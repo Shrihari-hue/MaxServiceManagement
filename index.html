@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MaxService Facility Management — Where Quality Meets Efficiency</title>
+<meta name="description" content="MaxService Facility Management — integrated facility management, soft services, security, staffing, MEP, pest control, landscaping and STP/WTP services in Bengaluru.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+<style>
+  :root{
+    --cream:#f7f4ee;
+    --cream-2:#f0ebe1;
+    --ink:#1c1a16;
+    --ink-soft:#4a463e;
+    --muted:#8a8477;
+    --line:#ddd6c8;
+    --dark:#15130f;
+    --dark-2:#1e1b15;
+    --bronze:#a3663c;
+    --bronze-light:#c98a5e;
+    --white:#ffffff;
+    --maxw:1240px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:auto;}
+  body{
+    font-family:'Inter',sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    font-weight:400;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    line-height:1.12;
+    letter-spacing:-0.01em;
+    color:var(--ink);
+  }
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 40px;}
+  .eyebrow{
+    font-size:12px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--bronze);
+    font-weight:600;
+    margin-bottom:18px;
+    display:flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{content:"";width:28px;height:1px;background:var(--bronze);display:inline-block;}
+  section{position:relative;}
+  /* .fade-up elements are revealed by GSAP ScrollTrigger in the script below;
+     they render fully visible by default so the page is complete with JS off. */
+
+  /* ===== HEADER ===== */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    padding:26px 0;
+    transition:all .4s ease;
+  }
+  header .wrap{display:flex;align-items:center;justify-content:space-between;}
+  header.scrolled{
+    background:rgba(247,244,238,0.92);
+    backdrop-filter:blur(10px);
+    padding:16px 0;
+    box-shadow:0 1px 0 var(--line);
+  }
+  .brand{display:flex;align-items:center;gap:12px;}
+  .brand img{height:34px;width:auto;}
+  .brand-text{font-family:'Fraunces',serif;font-size:19px;letter-spacing:0.03em;color:var(--white);font-weight:500;transition:color .4s ease;}
+  header.scrolled .brand-text{color:var(--ink);}
+  .brand-text span{display:block;font-family:'Inter',sans-serif;font-size:9px;letter-spacing:0.22em;font-weight:500;color:var(--bronze-light);margin-top:2px;}
+  header.scrolled .brand-text span{color:var(--bronze);}
+
+  nav.mainnav{display:flex;align-items:center;gap:42px;}
+  nav.mainnav a{
+    font-size:13px;letter-spacing:0.04em;color:rgba(255,255,255,0.88);
+    font-weight:500;transition:color .3s ease;position:relative;
+  }
+  header.scrolled nav.mainnav a{color:var(--ink-soft);}
+  nav.mainnav a:hover{color:var(--bronze-light);}
+  header.scrolled nav.mainnav a:hover{color:var(--bronze);}
+
+  .header-right{display:flex;align-items:center;gap:26px;}
+  .header-phone{font-size:13px;color:rgba(255,255,255,0.85);letter-spacing:0.02em;transition:color .4s ease;}
+  header.scrolled .header-phone{color:var(--ink-soft);}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;
+    padding:13px 26px;font-size:12.5px;letter-spacing:0.08em;text-transform:uppercase;
+    font-weight:600;border-radius:1px;transition:all .3s ease;white-space:nowrap;
+  }
+  .btn-solid{background:var(--bronze);color:var(--white);}
+  .btn-solid:hover{background:var(--ink);}
+  .btn-outline{border:1px solid rgba(255,255,255,0.5);color:var(--white);}
+  .btn-outline:hover{border-color:var(--white);background:rgba(255,255,255,0.08);}
+  .btn-outline-dark{border:1px solid var(--ink);color:var(--ink);}
+  .btn-outline-dark:hover{background:var(--ink);color:var(--white);}
+
+  .menu-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:6px;}
+  .menu-toggle span{width:22px;height:1.5px;background:var(--white);transition:.3s;}
+  header.scrolled .menu-toggle span{background:var(--ink);}
+  header.scrolled .header-right .btn-outline{border-color:var(--ink-soft);color:var(--ink);}
+  header.scrolled .header-right .btn-outline:hover{border-color:var(--ink);background:var(--ink);color:var(--white);}
+
+  /* ===== HERO (scroll-scrubbed image sequence) ===== */
+  .hero-sequence{
+    position:relative;
+    height:380vh; /* scroll distance over which the sequence plays out */
+  }
+  .hero-sticky{
+    position:sticky;top:0;
+    height:100vh;min-height:640px;
+    display:flex;align-items:center;
+    overflow:hidden;
+    background:var(--dark) url('frames/f000.jpg') center/cover no-repeat; /* fallback if JS/canvas can't run */
+  }
+  .hero-canvas{
+    position:absolute;inset:0;width:100%;height:100%;
+    z-index:0;
+  }
+  .hero-gradient{
+    position:absolute;inset:0;z-index:1;
+    background:linear-gradient(180deg,rgba(10,9,7,0.55) 0%,rgba(10,9,7,0.4) 40%,rgba(10,9,7,0.8) 100%);
+  }
+  .hero{position:relative;z-index:2;width:100%;}
+  .hero .wrap{padding-top:110px;}
+  .hero-eyebrow{
+    font-size:12px;letter-spacing:0.28em;text-transform:uppercase;color:var(--bronze-light);
+    font-weight:600;margin-bottom:26px;display:flex;align-items:center;gap:12px;
+  }
+  .hero-eyebrow::before{content:"";width:36px;height:1px;background:var(--bronze-light);}
+  .hero h1{
+    font-size:clamp(42px,6.4vw,84px);
+    color:var(--white);
+    font-weight:500;
+    max-width:920px;
+    margin-bottom:26px;
+  }
+  .hero h1 em{font-style:italic;color:var(--bronze-light);font-weight:400;}
+  .hero p{
+    font-size:17px;color:rgba(255,255,255,0.82);max-width:560px;margin-bottom:44px;font-weight:300;
+  }
+  .hero-ctas{display:flex;gap:18px;margin-bottom:80px;flex-wrap:wrap;}
+
+  .hero-stats{
+    display:grid;grid-template-columns:repeat(4,1fr);
+    border-top:1px solid rgba(255,255,255,0.2);
+    padding-top:32px;max-width:760px;
+  }
+  .hero-stats div{padding-right:20px;}
+  .hero-stats .num{font-family:'Fraunces',serif;font-size:clamp(24px,2.6vw,34px);color:var(--white);font-weight:500;}
+  .hero-stats .lbl{font-size:11.5px;letter-spacing:0.06em;color:rgba(255,255,255,0.6);margin-top:6px;text-transform:uppercase;}
+
+  .scroll-cue{
+    position:absolute;bottom:34px;left:50%;transform:translateX(-50%);
+    display:flex;flex-direction:column;align-items:center;gap:10px;z-index:2;
+  }
+  .scroll-cue .line{width:1px;height:42px;background:rgba(255,255,255,0.4);position:relative;overflow:hidden;}
+  .scroll-cue .line::after{content:"";position:absolute;top:-100%;left:0;width:100%;height:100%;background:var(--bronze-light);animation:scrolldown 2.2s ease-in-out infinite;}
+  @keyframes scrolldown{0%{top:-100%;}60%{top:100%;}100%{top:100%;}}
+
+  /* ===== ABOUT ===== */
+  .about{padding:150px 0 130px;}
+  .about .grid{display:grid;grid-template-columns:1fr 1fr;gap:90px;align-items:center;}
+  .about h2{font-size:clamp(32px,3.6vw,48px);margin-bottom:28px;}
+  .about p.lead{font-size:16.5px;color:var(--ink-soft);margin-bottom:20px;font-weight:400;max-width:520px;}
+  .mv{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:44px;}
+  .mv .item{border-top:1px solid var(--line);padding-top:20px;}
+  .mv .item .n{font-family:'Fraunces',serif;color:var(--bronze);font-size:13px;margin-bottom:10px;letter-spacing:0.05em;}
+  .mv .item h4{font-size:16px;margin-bottom:10px;font-weight:600;font-family:'Inter',sans-serif;letter-spacing:0.01em;}
+  .mv .item p{font-size:14px;color:var(--muted);line-height:1.65;}
+
+  .about-img{position:relative;}
+  .about-img .frame{
+    position:absolute;top:-22px;right:-22px;bottom:22px;left:22px;
+    border:1px solid var(--bronze);z-index:0;
+  }
+  .about-img img{position:relative;z-index:1;width:100%;height:520px;object-fit:cover;}
+  .about-img .badge{
+    position:absolute;z-index:2;bottom:-28px;left:-28px;
+    background:var(--dark);color:var(--white);padding:26px 30px;
+    max-width:230px;
+  }
+  .about-img .badge .num{font-family:'Fraunces',serif;font-size:38px;color:var(--bronze-light);}
+  .about-img .badge .txt{font-size:12px;letter-spacing:0.04em;color:rgba(255,255,255,0.75);margin-top:4px;}
+
+  /* ===== SERVICES ===== */
+  .services{padding:0 0 130px;background:var(--cream-2);position:relative;overflow:hidden;}
+  .services-fern{position:absolute;left:-60px;top:0;bottom:0;width:340px;opacity:0.5;pointer-events:none;z-index:0;color:var(--ink-soft);}
+  .services .wrap{position:relative;z-index:1;}
+
+  /* Full-bleed banner: photo spans the entire viewport width, heading/copy overlaid on top */
+  .services-banner{position:relative;width:100%;height:clamp(440px,52vw,600px);overflow:hidden;margin-bottom:90px;background:var(--dark-2);}
+  .services-banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 42%;display:block;}
+  .services-banner-overlay{
+    position:absolute;inset:0;
+    background:linear-gradient(105deg, rgba(16,14,11,0.82) 0%, rgba(16,14,11,0.56) 34%, rgba(16,14,11,0.16) 60%, rgba(16,14,11,0) 80%),
+               linear-gradient(0deg, rgba(16,14,11,0.35), rgba(16,14,11,0) 30%);
+  }
+  .services-banner-copy{position:relative;z-index:1;height:100%;display:flex;align-items:center;}
+  .services-banner-copy .inner{max-width:520px;}
+  .services-banner-copy .eyebrow{color:var(--bronze-light);}
+  .services-banner-copy .eyebrow::before{background:var(--bronze-light);}
+  .services-banner-copy h2{color:#fff;font-size:clamp(32px,3.6vw,50px);margin-bottom:20px;line-height:1.12;}
+  .services-banner-copy p{color:rgba(255,255,255,0.82);font-size:15.5px;line-height:1.75;max-width:400px;}
+
+  .svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  .svc-card{
+    background:var(--white);border:1px solid var(--line);border-radius:6px;
+    padding:30px 26px 26px;transition:border-color .3s ease, box-shadow .3s ease, transform .3s ease;
+    position:relative;overflow:hidden;
+  }
+  .svc-card[data-service]{cursor:pointer;}
+  .svc-card:hover,.svc-card.is-active{
+    border-color:var(--bronze);box-shadow:0 18px 40px rgba(28,26,22,0.08);transform:translateY(-2px);
+  }
+  .svc-card .n{font-family:'Fraunces',serif;font-size:13px;color:var(--bronze);letter-spacing:0.05em;margin-bottom:26px;display:block;}
+  .svc-icon{width:58px;height:58px;border-radius:50%;position:relative;margin-bottom:22px;}
+  .svc-icon img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;transition:transform .5s cubic-bezier(.16,.8,.24,1);}
+  .svc-card:hover .svc-icon img,.svc-card.is-active .svc-icon img{transform:scale(1.12);}
+  .svc-icon::after{
+    content:"";position:absolute;right:-2px;bottom:-2px;width:11px;height:11px;border-radius:50%;
+    background:var(--bronze);border:2px solid var(--white);transition:background .3s ease;
+  }
+  .svc-card:hover .svc-icon::after,.svc-card.is-active .svc-icon::after{background:var(--ink);}
+  .svc-card h3{font-size:18px;font-weight:600;font-family:'Inter',sans-serif;margin-bottom:10px;letter-spacing:-0.005em;}
+  .svc-card p{font-size:13.5px;color:var(--muted);line-height:1.6;}
+  .svc-more{display:flex;align-items:center;gap:12px;margin-top:24px;}
+  .svc-more span{font-size:12.5px;color:var(--bronze);font-weight:600;letter-spacing:0.02em;white-space:nowrap;}
+  .svc-more .svc-line{flex:1;height:1px;background:var(--line);}
+  .svc-more .svc-arrow{
+    flex:none;width:34px;height:34px;border-radius:50%;background:var(--cream-2);color:var(--ink);
+    display:flex;align-items:center;justify-content:center;transition:background .3s ease,color .3s ease,transform .3s ease;
+  }
+  .svc-card:hover .svc-more .svc-arrow,.svc-card.is-active .svc-more .svc-arrow{
+    background:var(--bronze);color:var(--white);transform:translateX(2px);
+  }
+
+  .pro-banner{
+    margin-top:1px;
+    background:var(--dark);color:var(--white);
+    display:flex;align-items:center;justify-content:space-between;
+    padding:44px 50px;flex-wrap:wrap;gap:24px;
+  }
+  .pro-banner .l .eyebrow{color:var(--bronze-light);}
+  .pro-banner .l .eyebrow::before{background:var(--bronze-light);}
+  .pro-banner h3{font-size:26px;color:var(--white);font-weight:500;margin-bottom:8px;}
+  .pro-banner p{font-size:14px;color:rgba(255,255,255,0.65);max-width:480px;}
+
+  /* ===== WORK / GALLERY TEASER ===== */
+  .work{padding:130px 0;}
+  .work-head{margin-bottom:60px;display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap;}
+  .work-head h2{font-size:clamp(32px,3.6vw,48px);}
+  .work-grid{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:130px;gap:14px;}
+  .work-grid a{grid-column:span 3;grid-row:span 2;position:relative;overflow:hidden;display:block;}
+  .work-grid a.tall{grid-row:span 3;}
+  .work-grid a.wide{grid-column:span 3;}
+  .work-grid a:nth-child(1){grid-column:span 3;grid-row:span 3;}
+  .work-grid a:nth-child(2){grid-column:span 3;grid-row:span 2;}
+  .work-grid a:nth-child(3){grid-column:span 3;grid-row:span 1;}
+  .work-grid a:nth-child(4){grid-column:span 2;grid-row:span 2;}
+  .work-grid a:nth-child(5){grid-column:span 2;grid-row:span 2;}
+  .work-grid a:nth-child(6){grid-column:span 2;grid-row:span 2;}
+  .work-grid img{width:100%;height:100%;object-fit:cover;filter:grayscale(0.55) brightness(0.92);transition:filter .5s ease, transform .6s ease;transform:scale(1.02);}
+  .work-grid a:hover img{filter:grayscale(0) brightness(1);transform:scale(1.08);}
+  .work-grid .cap{
+    position:absolute;left:0;right:0;bottom:0;padding:16px 18px;
+    background:linear-gradient(0deg,rgba(10,9,7,0.75),transparent);
+    color:var(--white);font-size:12.5px;letter-spacing:0.05em;
+    opacity:0;transition:opacity .35s ease;
+  }
+  .work-grid a:hover .cap{opacity:1;}
+
+  /* ===== SERVICE LIGHTBOX (full-screen takeover) ===== */
+  .lightbox{position:fixed;inset:0;z-index:200;visibility:hidden;opacity:0;transition:opacity .5s ease, visibility 0s linear .5s;}
+  .lightbox.is-open{visibility:visible;opacity:1;transition:opacity .5s ease;}
+  .lightbox-backdrop{position:absolute;inset:0;background:var(--dark);}
+  .lightbox-panel{
+    position:relative;width:100%;height:100%;
+    background:var(--dark);color:var(--white);overflow:hidden;
+    display:grid;grid-template-columns:1.35fr 1fr;
+  }
+  .lightbox-media{position:relative;overflow:hidden;background:var(--dark-2);height:100%;}
+  .lightbox-media img{width:100%;height:100%;object-fit:cover;display:block;}
+  .lightbox-media::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(90deg,rgba(12,10,8,0) 70%,rgba(12,10,8,0.35) 100%),
+               linear-gradient(0deg,rgba(12,10,8,0.28),rgba(12,10,8,0) 22%);
+  }
+  .lightbox-body{
+    padding:clamp(48px,6vw,110px) clamp(40px,5vw,96px);
+    display:flex;flex-direction:column;justify-content:center;gap:20px;max-width:640px;
+  }
+  .lightbox-index{font-family:'Fraunces',serif;font-size:13.5px;color:rgba(255,255,255,0.42);letter-spacing:.08em;}
+  .lightbox-body .eyebrow{color:var(--bronze-light);}
+  .lightbox-body .eyebrow::before{background:var(--bronze-light);}
+  .lightbox-body h3{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(34px,4vw,58px);color:var(--white);line-height:1.08;}
+  .lightbox-body p{font-size:16px;line-height:1.75;color:rgba(255,255,255,0.68);max-width:46ch;}
+  .lightbox-body .btn{align-self:flex-start;margin-top:10px;}
+  .lightbox-index,.lightbox-body .eyebrow,.lightbox-body h3,.lightbox-body p,.lightbox-body .btn{opacity:0;}
+  .lightbox-close{
+    position:fixed;top:28px;right:32px;z-index:3;width:46px;height:46px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;color:var(--white);
+    background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);
+    cursor:pointer;transition:background .25s ease,transform .25s ease;
+  }
+  .lightbox-close:hover{background:rgba(255,255,255,0.18);transform:rotate(90deg);}
+  .lightbox-nav{
+    position:fixed;top:50%;transform:translateY(-50%);z-index:3;width:52px;height:52px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;color:var(--white);
+    background:rgba(12,10,8,0.4);border:1px solid rgba(255,255,255,0.22);
+    cursor:pointer;transition:background .25s ease,border-color .25s ease,transform .25s ease;
+    backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+  }
+  .lightbox-nav:hover{background:rgba(163,102,60,0.85);border-color:var(--bronze-light);}
+  .lightbox-prev{left:28px;}
+  .lightbox-next{right:28px;}
+  .lightbox-prev:hover{transform:translateY(-50%) translateX(-2px);}
+  .lightbox-next:hover{transform:translateY(-50%) translateX(2px);}
+  body.lightbox-open{overflow:hidden;}
+  @media (max-width:860px){
+    .lightbox-panel{grid-template-columns:1fr;grid-template-rows:42vh 1fr;overflow-y:auto;}
+    .lightbox-media{height:42vh;}
+    .lightbox-body{padding:34px 26px 44px;max-width:none;gap:14px;}
+    .lightbox-body h3{font-size:clamp(26px,6vw,36px);}
+    .lightbox-nav{top:21vh;}
+    .lightbox-close{top:18px;right:18px;width:40px;height:40px;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .lightbox,.lightbox-panel,.lightbox-close,.lightbox-nav{transition:none;}
+  }
+
+  /* ===== SECTORS ===== */
+  .sectors{background:var(--dark);color:var(--white);padding:130px 0;}
+  .sectors .top{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:64px;flex-wrap:wrap;gap:30px;}
+  .sectors h2{color:var(--white);font-size:clamp(32px,3.6vw,48px);max-width:520px;}
+  .sectors .top p{color:rgba(255,255,255,0.55);font-size:15px;max-width:340px;}
+  .sector-list{display:grid;grid-template-columns:repeat(3,1fr);}
+  .sector-list div{
+    border-top:1px solid rgba(255,255,255,0.16);
+    padding:26px 26px 26px 0;
+    font-family:'Fraunces',serif;font-size:clamp(18px,1.7vw,23px);font-weight:400;
+    color:rgba(255,255,255,0.92);
+    display:flex;align-items:baseline;gap:14px;
+  }
+  .sector-list div span{font-family:'Inter',sans-serif;font-size:11px;color:var(--bronze-light);letter-spacing:0.05em;}
+
+  /* ===== CLIENTS ===== */
+  .clients{padding:100px 0;}
+  .clients .wrap{margin-bottom:56px;}
+  .clients .eyebrow{justify-content:center;}
+  .clients .eyebrow::before{display:none;}
+  .clients h2{text-align:center;font-size:clamp(26px,2.6vw,34px);margin-bottom:0;}
+
+  /* word-by-word scroll reveal (see splitWords() in JS) */
+  .word-mask{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:0.08em;margin-bottom:-0.08em;}
+  .word-inner{display:inline-block;will-change:transform;}
+
+  /* continuous auto-scrolling client-logo marquee */
+  .client-marquee{
+    position:relative;
+    width:100%;
+    overflow:hidden;
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+    mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+  }
+  .client-track{
+    display:flex;
+    align-items:center;
+    width:max-content;
+    gap:88px;
+    padding:0 36px;
+    animation:client-marquee-scroll 34s linear infinite;
+  }
+  .client-marquee:hover .client-track{animation-play-state:paused;}
+  .client-track img{height:56px;width:auto;object-fit:contain;flex:none;filter:grayscale(1);opacity:0.55;transition:all .35s ease;}
+  .client-track img:hover{filter:grayscale(0);opacity:1;}
+  @keyframes client-marquee-scroll{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .client-track{animation:none;}
+  }
+
+  /* ===== CTA / CONTACT ===== */
+  .cta{display:grid;grid-template-columns:1.1fr 0.9fr;min-height:480px;}
+  .cta .panel{padding:100px 70px;background:var(--dark);color:var(--white);display:flex;flex-direction:column;justify-content:center;}
+  .cta .panel h2{color:var(--white);font-size:clamp(30px,3.4vw,44px);margin-bottom:22px;max-width:440px;}
+  .cta .panel p.lead{color:rgba(255,255,255,0.6);font-size:15px;margin-bottom:40px;max-width:420px;}
+  .cta-btns{display:flex;gap:14px;flex-wrap:wrap;align-self:flex-start;}
+  .cta-info{display:flex;flex-direction:column;gap:22px;margin-bottom:44px;}
+  .cta-info div{border-top:1px solid rgba(255,255,255,0.16);padding-top:16px;}
+  .cta-info .lbl{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--bronze-light);margin-bottom:6px;}
+  .cta-info .val{font-size:15px;color:rgba(255,255,255,0.9);}
+  .cta .img-panel{background:url('assets/searchluxurious-bg.jpg') center/cover no-repeat;position:relative;}
+  .cta .img-panel::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(21,19,15,0.15),rgba(21,19,15,0.5));}
+
+  /* ===== FOOTER ===== */
+  footer{background:var(--dark);color:rgba(255,255,255,0.6);padding:70px 0 30px;border-top:1px solid rgba(255,255,255,0.1);}
+  .footer-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:50px;padding-bottom:60px;}
+  .footer-brand{display:flex;align-items:center;gap:12px;margin-bottom:18px;}
+  .footer-brand img{height:30px;}
+  .footer-brand span{font-family:'Fraunces',serif;color:var(--white);font-size:18px;}
+  footer p.tag{font-size:13.5px;color:rgba(255,255,255,0.45);max-width:260px;line-height:1.7;}
+  .fcol h5{font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.9);margin-bottom:20px;font-weight:600;}
+  .fcol a,.fcol div{display:block;font-size:13.5px;color:rgba(255,255,255,0.5);margin-bottom:12px;transition:color .3s;}
+  .fcol a:hover{color:var(--bronze-light);}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,0.1);padding-top:26px;display:flex;justify-content:space-between;font-size:12.5px;color:rgba(255,255,255,0.4);flex-wrap:wrap;gap:10px;}
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width:1024px){
+    .wrap{padding:0 28px;}
+    .about .grid{grid-template-columns:1fr;gap:60px;}
+    .about-img img{height:400px;}
+    .svc-grid{grid-template-columns:repeat(2,1fr);}
+    .services-fern{display:none;}
+    .services-banner{height:clamp(480px,86vw,620px);}
+    .services-banner-overlay{
+      background:linear-gradient(180deg, rgba(16,14,11,0.35) 0%, rgba(16,14,11,0.4) 45%, rgba(16,14,11,0.86) 92%);
+    }
+    .services-banner-copy{align-items:flex-end;padding-bottom:44px;}
+    .services-banner-copy .inner{max-width:none;}
+    .sector-list{grid-template-columns:repeat(2,1fr);}
+    .cta{grid-template-columns:1fr;}
+    .cta .img-panel{min-height:280px;}
+    .footer-top{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:760px){
+    nav.mainnav,.header-phone{display:none;}
+    .menu-toggle{display:flex;}
+    .brand-text span{display:none;}
+    .hero .wrap{padding-top:90px;}
+    .hero-sequence{height:100vh;} /* scroll-scrub is desktop-only; mobile gets a static hero */
+    .hero-stats{grid-template-columns:repeat(2,1fr);row-gap:26px;}
+    .svc-grid{grid-template-columns:1fr;}
+    .work-grid{grid-template-columns:repeat(2,1fr);}
+    .work-grid a,.work-grid a:nth-child(n){grid-column:span 1 !important;grid-row:span 2 !important;}
+    .sector-list{grid-template-columns:1fr;}
+    .footer-top{grid-template-columns:1fr;gap:34px;}
+    .about-img .badge{left:0;bottom:-24px;}
+    .pro-banner{padding:36px 28px;}
+  }
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <div class="wrap">
+    <a href="#" class="brand">
+      <img src="assets/logo_white.png" alt="MaxService">
+      <span class="brand-text">MaxService<span>FACILITY MANAGEMENT</span></span>
+    </a>
+    <nav class="mainnav">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#work">Gallery</a>
+      <a href="#sectors">Sectors</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="header-right">
+      <span class="header-phone">080-4215 2254</span>
+      <a href="#contact" class="btn btn-outline">Enquire</a>
+    </div>
+    <button class="menu-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="hero-sequence" id="heroSequence">
+  <div class="hero-sticky">
+    <canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>
+    <div class="hero-gradient"></div>
+    <div class="hero">
+      <div class="wrap">
+        <div class="hero-eyebrow">People &nbsp;/&nbsp; Spaces &nbsp;/&nbsp; Performance</div>
+        <h1>Facility Management<br>that <em>keeps you moving</em>.</h1>
+        <p>Integrated facility management solutions for safer, cleaner and more efficient spaces.</p>
+        <div class="hero-ctas">
+          <a href="#services" class="btn btn-solid">Explore Our Services →</a>
+        </div>
+        <div class="hero-stats">
+          <div><div class="num">18+</div><div class="lbl">Years Experience</div></div>
+          <div><div class="num">100+</div><div class="lbl">Happy Companies</div></div>
+          <div><div class="num">700+</div><div class="lbl">Services Completed</div></div>
+          <div><div class="num">25+</div><div class="lbl">Sectors Served</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-cue"><div class="line"></div></div>
+  </div>
+</section>
+
+<section class="clients">
+  <div class="wrap">
+    <div class="eyebrow">Our Clients</div>
+    <h2 class="word-reveal">Some of the names we're proud to serve.</h2>
+  </div>
+  <div class="client-marquee">
+    <div class="client-track">
+      <img src="assets/Indigo_91.9_FM_Official_LOGO.png" alt="Indigo 91.9 FM">
+      <img src="assets/SugunaFoods.png" alt="Suguna Foods">
+      <img src="assets/Tommy-Hilfiger-logo.png" alt="Tommy Hilfiger">
+      <img src="assets/VegaCity-logo.png" alt="Vega City">
+      <img src="assets/anandsweets.png" alt="Anand Sweets">
+      <img src="assets/narayanahrudalaya.png" alt="Narayana Hrudalaya">
+      <img src="assets/Indigo_91.9_FM_Official_LOGO.png" alt="" aria-hidden="true">
+      <img src="assets/SugunaFoods.png" alt="" aria-hidden="true">
+      <img src="assets/Tommy-Hilfiger-logo.png" alt="" aria-hidden="true">
+      <img src="assets/VegaCity-logo.png" alt="" aria-hidden="true">
+      <img src="assets/anandsweets.png" alt="" aria-hidden="true">
+      <img src="assets/narayanahrudalaya.png" alt="" aria-hidden="true">
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="grid">
+      <div class="fade-up">
+        <div class="eyebrow">About MaxService</div>
+        <h2>Eighteen years of quiet precision.</h2>
+        <p class="lead">At MaxService Facility Management, we pride ourselves on being a premier provider of integrated facility management services. With a dedicated team of professionals and a commitment to excellence, we are your trusted partner in the efficient, smooth operation of your facilities.</p>
+        <p class="lead">Our comprehensive range of services covers everything from maintenance and security to sustainability and technology — making us your one-stop solution for every facility need.</p>
+        <div class="mv">
+          <div class="item">
+            <div class="n">01 — Mission</div>
+            <h4>Optimised Performance</h4>
+            <p>To provide top-notch facility management services that optimise performance, reduce operating costs, and create safe, sustainable environments.</p>
+          </div>
+          <div class="item">
+            <div class="n">02 — Vision</div>
+            <h4>Industry Leadership</h4>
+            <p>To be the industry leader in integrated facility management by consistently delivering innovative, sustainable solutions that enhance client value.</p>
+          </div>
+        </div>
+      </div>
+      <div class="about-img fade-up">
+        <div class="frame"></div>
+        <img src="assets/commercial-restroom.jpg" alt="Premium facility maintained by MaxService">
+        <div class="badge"><div class="num">100+</div><div class="txt">Offices maintained to five-star standard</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="services-banner fade-up">
+    <img src="assets/services-hero.jpg" alt="MaxService technician walking through a bright, plant-lined facility lobby marked People, Spaces, Possibilities">
+    <div class="services-banner-overlay"></div>
+    <div class="services-banner-copy wrap">
+      <div class="inner">
+        <div class="eyebrow">Cleaner spaces. Brighter tomorrows.</div>
+        <h2>Eight disciplines, one standard of care.</h2>
+        <p>Every service is delivered by trained, uniformed teams and managed under a single point of accountability.</p>
+      </div>
+    </div>
+  </div>
+  <div class="wrap">
+    <svg class="services-fern" viewBox="0 0 340 700" fill="none" aria-hidden="true">
+      <path d="M20 700 C10 520 40 340 15 160 C0 60 30 0 30 0" stroke="currentColor" stroke-width="1.2"/>
+      <g stroke="currentColor" stroke-width="1">
+        <path d="M22 620 C70 605 100 570 120 530"/>
+        <path d="M18 560 C66 548 96 512 112 470"/>
+        <path d="M22 500 C68 486 96 450 110 410"/>
+        <path d="M15 440 C60 428 88 392 100 352"/>
+        <path d="M20 380 C62 366 88 330 98 292"/>
+        <path d="M14 320 C54 306 78 270 86 234"/>
+        <path d="M18 260 C55 246 76 212 82 176"/>
+        <path d="M12 200 C46 186 64 154 68 120"/>
+        <path d="M18 140 C48 126 62 96 64 66"/>
+      </g>
+    </svg>
+    <div class="svc-grid fade-up">
+      <div class="svc-card" data-service="svc-ifm">
+        <span class="n">01</span>
+        <div class="svc-icon"><img src="assets/maxservice1.jpg" alt=""></div>
+        <h3>Integrated Facility Management</h3>
+        <p>End-to-end operations, maintenance and support under one accountable team.</p>
+        <a href="#contact" class="svc-more"><span>Learn more</span><i class="svc-line"></i><span class="svc-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      </div>
+      <div class="svc-card is-active" data-service="svc-soft">
+        <span class="n">02</span>
+        <div class="svc-icon"><img src="assets/cleaningservice.jpg" alt=""></div>
+        <h3>Soft Services</h3>
+        <p>Housekeeping, janitorial and sanitisation delivered to five-star hygiene standards.</p>
+        <a href="#contact" class="svc-more"><span>Learn more</span><i class="svc-line"></i><span class="svc-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      </div>
+      <div class="svc-card" data-service="svc-security">
+        <span class="n">03</span>
+        <div class="svc-icon"><img src="assets/security-guard-services.jpg" alt=""></div>
+        <h3>Security &amp; Guarding</h3>
+        <p>Trained, uniformed personnel providing round-the-clock protection for people and premises.</p>
+        <a href="#contact" class="svc-more"><span>Learn more</span><i class="svc-line"></i><span class="svc-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      </div>
+      <div class="svc-card" data-service="svc-staffing">
+        <span class="n">04</span>
+        <div class="svc-icon"><img src="assets/staffingservice.jpeg" alt=""></div>
+        <h3>Staffing Services</h3>
+        <p>Skilled manpower sourced, trained and deployed to keep operations running smoothly.</p>
+        <a href="#contact" class="svc-more"><span>Learn more</span><i class="svc-line"></i><span class="svc-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      </div>
+      <div class="svc-card" data-service="svc-mep">
+        <span class="n">05</span>
+        <div class="svc-icon"><img src="assets/mep.jpg" alt=""></div>
+        <h3>MEP Services</h3>
+        <p>Mechanical, electrical and plumbing maintenance that keeps infrastructure safe and reliable.</p>
+        <a href="#contact" class="svc-more"><span>Learn more</span><i class="svc-line"></i><span class="svc-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      </div>
+      <div class="svc-card" data-service="svc-pest">
+        <span class="n">06</span>
+        <div class="svc-icon"><img src="assets/pestcontrol.jpg" alt=""></div>
+        <h3>Pest Control</h3>
+        <p>Scientific, eco-conscious pest management protecting your facility and its occupants.</p>
+        <a href="#contact" class="svc-more"><span>Learn more</span><i class="svc-line"></i><span class="svc-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      </div>
+      <div class="svc-card" data-service="svc-garden">
+        <span class="n">07</span>
+        <div class="svc-icon"><img src="assets/Garden-styles.jpg" alt=""></div>
+        <h3>Gardening &amp; Landscaping</h3>
+        <p>Thoughtful landscape design and upkeep that elevates every outdoor space.</p>
+        <a href="#contact" class="svc-more"><span>Learn more</span><i class="svc-line"></i><span class="svc-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      </div>
+      <div class="svc-card" data-service="svc-stp">
+        <span class="n">08</span>
+        <div class="svc-icon"><img src="assets/stp.jpg" alt=""></div>
+        <h3>STP &amp; WTP Services</h3>
+        <p>Sewage and water treatment plant operations engineered for compliance and sustainability.</p>
+        <a href="#contact" class="svc-more"><span>Learn more</span><i class="svc-line"></i><span class="svc-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      </div>
+    </div>
+    <div class="pro-banner fade-up">
+      <div class="l">
+        <div class="eyebrow">MaxService Pro</div>
+        <h3>The one-time solution.</h3>
+        <p>Every discipline above, bundled into a single service-level agreement with one point of contact.</p>
+      </div>
+      <a href="#contact" class="btn btn-outline">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<section class="work" id="work">
+  <div class="wrap">
+    <div class="work-head fade-up">
+      <div>
+        <div class="eyebrow">Our Work</div>
+        <h2>A glimpse of the standard we hold.</h2>
+      </div>
+    </div>
+    <div class="work-grid stagger-reveal">
+      <a href="#services" data-service="facade"><img src="assets/facade.jpg" alt="Facade cleaning"><span class="cap">Façade Cleaning</span></a>
+      <a href="#services" data-service="restroom"><img src="assets/commercial-restroom.jpg" alt="Restroom sanitation"><span class="cap">Restroom Sanitation</span></a>
+      <a href="#services" data-service="stp"><img src="assets/stp.jpg" alt="STP / WTP"><span class="cap">STP &amp; WTP Plant</span></a>
+      <a href="#services" data-service="landscaping"><img src="assets/Garden-styles.jpg" alt="Landscaping"><span class="cap">Landscaping</span></a>
+      <a href="#services" data-service="security"><img src="assets/security-guard-services.jpg" alt="Security"><span class="cap">Security &amp; Guarding</span></a>
+      <a href="#services" data-service="staffing"><img src="assets/staffingservice.jpeg" alt="Staffing"><span class="cap">Staffing</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="sectors" id="sectors">
+  <div class="wrap">
+    <div class="top fade-up">
+      <h2>Trusted across sectors.</h2>
+      <p>Our satisfied clients span a broad range of industries across Bengaluru and beyond.</p>
+    </div>
+    <div class="sector-list fade-up">
+      <div><span>01</span> Corporates</div>
+      <div><span>02</span> Healthcare Facilities</div>
+      <div><span>03</span> Malls</div>
+      <div><span>04</span> Educational Institutions</div>
+      <div><span>05</span> Industrial &amp; Manufacturing</div>
+      <div><span>06</span> Retail Outlets</div>
+      <div><span>07</span> Commercial Real Estate</div>
+      <div><span>08</span> IT Parks &amp; SEZ</div>
+      <div><span>09</span> Hospitality</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="panel fade-up">
+    <div class="eyebrow">Get In Touch</div>
+    <h2>Let's talk about your facility.</h2>
+    <p class="lead">Contact us today to discuss how we can tailor our services to your unique needs — most enquiries are answered within one business day.</p>
+    <div class="cta-info">
+      <div><div class="lbl">Visit</div><div class="val">#419, 6th B Cross, 20th Main, 6th Block, Koramangala, Bengaluru – 560095</div></div>
+      <div><div class="lbl">Call</div><div class="val">080-4215 2254 &nbsp;/&nbsp; +91 72044 40716</div></div>
+      <div><div class="lbl">Email</div><div class="val">info@maxservicefm.com</div></div>
+    </div>
+    <div class="cta-btns">
+      <a href="mailto:info@maxservicefm.com?subject=Enquiry%20-%20MaxService%20Facility%20Management" class="btn btn-solid">Email Us</a>
+      <a href="https://wa.me/917204440716?text=Hi%20MaxService%2C%20I%27d%20like%20to%20enquire%20about%20your%20facility%20management%20services." class="btn btn-outline" target="_blank" rel="noopener">WhatsApp Us</a>
+    </div>
+  </div>
+  <div class="img-panel"></div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">
+          <img src="assets/logo_bronze.png" alt="MaxService">
+          <span>MaxService</span>
+        </div>
+        <p class="tag">Integrated facility management, delivered with quiet precision — Bengaluru's trusted partner for eighteen years.</p>
+      </div>
+      <div class="fcol">
+        <h5>Company</h5>
+        <a href="#about">About Us</a>
+        <a href="#services">Our Services</a>
+        <a href="#work">Gallery</a>
+        <a href="#contact">Contact Us</a>
+      </div>
+      <div class="fcol">
+        <h5>Services</h5>
+        <a href="#services">Soft Services</a>
+        <a href="#services">Security &amp; Guarding</a>
+        <a href="#services">MEP Services</a>
+        <a href="#services">STP &amp; WTP</a>
+      </div>
+      <div class="fcol">
+        <h5>Contact</h5>
+        <div>Koramangala, Bengaluru – 560095</div>
+        <div>080-4215 2254</div>
+        <div>info@maxservicefm.com</div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 MaxService Facility Management. All rights reserved.</span>
+      <span>Design refreshed with care.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="lightbox" id="serviceLightbox" aria-hidden="true">
+  <div class="lightbox-backdrop" data-lightbox-close></div>
+  <div class="lightbox-panel" role="dialog" aria-modal="true" aria-labelledby="lightboxTitle">
+    <button type="button" class="lightbox-close" data-lightbox-close aria-label="Close">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 6L18 18M18 6L6 18"/></svg>
+    </button>
+    <div class="lightbox-media">
+      <img id="lightboxImg" src="" alt="">
+      <button type="button" class="lightbox-nav lightbox-prev" data-lightbox-prev aria-label="Previous service">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 5L8 12l7 7"/></svg>
+      </button>
+      <button type="button" class="lightbox-nav lightbox-next" data-lightbox-next aria-label="Next service">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+    <div class="lightbox-body">
+      <div class="lightbox-index" id="lightboxIndex"></div>
+      <div class="eyebrow" id="lightboxEyebrow"></div>
+      <h3 id="lightboxTitle"></h3>
+      <p id="lightboxDesc"></p>
+      <a href="#contact" class="btn btn-solid" data-lightbox-close>Enquire About This Service</a>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const header = document.getElementById('siteHeader');
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isMobile = window.innerWidth <= 768;
+  const hasGSAP = typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined';
+
+  if(hasGSAP) gsap.registerPlugin(ScrollTrigger);
+
+  const heroSection = document.getElementById('heroSequence');
+  const getHeroEnd = () => heroSection ? (heroSection.offsetTop + heroSection.offsetHeight) : 40;
+  let heroEnd = getHeroEnd();
+  const updateHeaderState = () => {
+    // Stay transparent for the full hero scroll-scrub; only solidify once
+    // past the hero into the lighter content sections below.
+    header.classList.toggle('scrolled', window.scrollY > heroEnd - window.innerHeight * 0.9);
+  };
+  window.addEventListener('scroll', updateHeaderState);
+  window.addEventListener('resize', () => { heroEnd = getHeroEnd(); updateHeaderState(); });
+  updateHeaderState();
+
+  /* ---------- Lenis smooth scroll (desktop, motion allowed) ---------- */
+  let lenis = null;
+  if(!prefersReduced && !isMobile && typeof Lenis !== 'undefined'){
+    lenis = new Lenis({ wheelMultiplier: 0.85, duration: 1.15, smoothWheel: true });
+    if(hasGSAP){
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add((time)=>{ lenis.raf(time*1000); });
+      gsap.ticker.lagSmoothing(0);
+    } else {
+      requestAnimationFrame(function raf(time){ lenis.raf(time); requestAnimationFrame(raf); });
+    }
+  }
+
+  /* ---------- Anchor nav ---------- */
+  document.querySelectorAll('nav.mainnav a, .header-right a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', e=>{
+      const id = a.getAttribute('href');
+      if(id.length>1){
+        e.preventDefault();
+        const target = document.querySelector(id);
+        if(!target) return;
+        if(lenis) lenis.scrollTo(target, {offset:-10});
+        else target.scrollIntoView({behavior: prefersReduced ? 'auto' : 'smooth'});
+      }
+    });
+  });
+
+  /* ---------- Hero scroll-scrubbed image sequence ---------- */
+  (function(){
+    const canvas = document.getElementById('heroCanvas');
+    if(!canvas) return;
+    const N = 70;
+    const pad = n => String(n).padStart(3,'0');
+    const framePath = i => `frames/f${pad(i)}.jpg`;
+
+    // alpha:false — the canvas is always fully covered (see draw()), so the browser
+    // can skip alpha compositing entirely, which is a meaningful cost on every redraw
+    const ctx = canvas.getContext('2d', {alpha:false});
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
+    const images = new Array(N);
+    let currentDrawn = -1;
+    let wantIdx = 0;
+    const canBitmap = typeof window.createImageBitmap === 'function';
+
+    const pending = new Array(N);
+    function loadFrame(i){
+      if(images[i]) return Promise.resolve(images[i]);
+      if(pending[i]) return pending[i];
+      pending[i] = new Promise(resolve=>{
+        const img = new Image();
+        img.decoding = 'async';
+        img.onload = ()=>{
+          const finish = (drawable)=>{
+            images[i]=drawable;
+            // if this is the frame we're currently trying to show, draw it now
+            if(i===wantIdx && i!==currentDrawn){ currentDrawn=i; draw(drawable); }
+            resolve(drawable);
+          };
+          // decode off the main thread into a GPU-friendly bitmap ahead of time, so the
+          // scroll-tick that actually draws this frame never pays a decode hitch itself
+          if(canBitmap) createImageBitmap(img).then(finish).catch(()=>finish(img));
+          else finish(img);
+        };
+        img.onerror = ()=> resolve(null);
+        img.src = framePath(i);
+      });
+      return pending[i];
+    }
+
+    // nearest already-decoded frame to idx, so the canvas never stalls waiting on a network fetch
+    function nearestLoaded(idx){
+      for(let d=0; d<N; d++){
+        if(images[idx-d]) return idx-d;
+        if(images[idx+d]) return idx+d;
+      }
+      return -1;
+    }
+
+    function resizeCanvas(){
+      // 1.5x is plenty crisp for a full-bleed photographic background (it's never
+      // pixel-peeped like UI text) and keeps far fewer pixels to redraw on every
+      // scroll tick than a full retina 2x backing store — the biggest lever for
+      // keeping the scrub buttery on lower-powered/integrated GPUs.
+      const dpr = Math.min(window.devicePixelRatio||1, 1.5);
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = Math.round(rect.width*dpr);
+      canvas.height = Math.round(rect.height*dpr);
+      // resizing a canvas resets its context state, so re-apply smoothing quality
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
+    }
+
+    function draw(img){
+      if(!img) return;
+      const cw = canvas.width, ch = canvas.height;
+      const ir = img.width/img.height, cr = cw/ch;
+      let dw,dh,dx,dy;
+      if(ir > cr){ dh=ch; dw=ch*ir; dx=(cw-dw)/2; dy=0; }
+      else { dw=cw; dh=cw/ir; dx=0; dy=(ch-dh)/2; }
+      // no clearRect: the cover-fit sizing above always fully overpaints the canvas,
+      // so clearing first is pure wasted work on every single scroll-driven redraw
+      ctx.drawImage(img, dx, dy, dw, dh);
+    }
+
+    function showFrame(idx){
+      idx = Math.max(0, Math.min(N-1, idx));
+      wantIdx = idx;
+      if(idx===currentDrawn) return;
+      if(images[idx]){
+        currentDrawn = idx;
+        draw(images[idx]);
+        return;
+      }
+      // exact frame isn't decoded yet: draw the closest one we DO have, right now,
+      // so scrubbing never stalls/holds on a stale frame while the real one downloads
+      loadFrame(idx);
+      const near = nearestLoaded(idx);
+      if(near !== -1 && near !== currentDrawn){
+        currentDrawn = near;
+        draw(images[near]);
+      }
+    }
+
+    resizeCanvas();
+    window.addEventListener('resize', ()=>{
+      resizeCanvas();
+      if(currentDrawn>=0) draw(images[currentDrawn]);
+    });
+
+    // frame 0 first (paints immediately), then every remaining frame right away in parallel —
+    // the browser queues/parallelizes the requests itself, and each one self-inserts via
+    // showFrame's "nearest loaded" fallback above the moment it lands, so there's no stall
+    // waiting for a whole batch before scrubbing feels complete.
+    loadFrame(0).then(draw);
+    for(let i=1;i<N;i++) loadFrame(i);
+
+    if(prefersReduced || isMobile || !hasGSAP){
+      // static experience: show a representative frame, no scroll-scrub
+      showFrame(0); // static hero: the establishing exterior shot
+      return;
+    }
+
+    ScrollTrigger.create({
+      trigger: '#heroSequence',
+      start: 'top top',
+      end: 'bottom bottom',
+      // scrub:true ties the frame directly to scroll position with no extra lag of its
+      // own — Lenis already supplies all the easing/inertia upstream, so a second,
+      // separately-timed smoothing pass here only made the frame chase a moving
+      // target and read as laggier, not smoother.
+      scrub: true,
+      onUpdate(self){
+        showFrame(Math.round(self.progress * (N-1)));
+      }
+    });
+  })();
+
+  /* ---------- Section reveal animations ---------- */
+  if(hasGSAP){
+    document.querySelectorAll('.fade-up').forEach(el=>{
+      if(prefersReduced){ return; } // leave fully visible, no motion
+      gsap.from(el, {
+        opacity:0, y:26, duration:0.9, ease:'power2.out',
+        scrollTrigger:{ trigger: el, start:'top 88%', toggleActions:'play none none none' }
+      });
+    });
+
+    // same idea as .fade-up, but reveals each direct child individually with a
+    // slight stagger instead of animating the whole container as one block —
+    // used for the "Our Work" gallery grid so the tiles feel like they're
+    // arriving one after another rather than popping in all at once
+    document.querySelectorAll('.stagger-reveal').forEach(container=>{
+      if(prefersReduced){ return; }
+      gsap.from(container.children, {
+        opacity:0, y:30, duration:0.8, ease:'power2.out', stagger:0.08,
+        scrollTrigger:{ trigger: container, start:'top 85%', toggleActions:'play none none none' }
+      });
+    });
+  }
+
+  /* ---------- Word-by-word heading reveal ---------- */
+  // wraps each word in a masked span so it can rise up from underneath a hidden edge,
+  // then staggers them in as the heading scrolls into view (same treatment rioproperty.co.za
+  // uses on its "Some of the people we've worked with" heading)
+  function splitWords(el){
+    const words = el.textContent.trim().split(/\s+/);
+    el.innerHTML = words
+      .map(w => `<span class="word-mask"><span class="word-inner">${w}</span></span>`)
+      .join(' ');
+    return el.querySelectorAll('.word-inner');
+  }
+
+  if(hasGSAP){
+    document.querySelectorAll('.word-reveal').forEach(el=>{
+      if(prefersReduced){ return; } // leave the plain, fully visible heading text
+      const words = splitWords(el);
+      gsap.set(words, {yPercent:110, opacity:0});
+      gsap.to(words, {
+        yPercent:0, opacity:1, duration:0.75, ease:'power3.out', stagger:0.045,
+        scrollTrigger:{ trigger: el, start:'top 85%', toggleActions:'play none none none' }
+      });
+    });
+  }
+
+  /* ---------- Gallery lightbox: click a work-grid photo to see the service info ---------- */
+  (function(){
+    const lightbox = document.getElementById('serviceLightbox');
+    if(!lightbox) return;
+    const imgEl = document.getElementById('lightboxImg');
+    const indexEl = document.getElementById('lightboxIndex');
+    const eyebrowEl = document.getElementById('lightboxEyebrow');
+    const titleEl = document.getElementById('lightboxTitle');
+    const descEl = document.getElementById('lightboxDesc');
+
+    // note: no `img` field here — the lightbox reuses the src of the thumbnail
+    // that was actually clicked (see openLightbox below) instead of embedding a
+    // second copy of each photo, which matters for the self-contained Artifact
+    // preview build where every image is inlined as base64.
+    const SERVICES = {
+      facade: {
+        eyebrow: 'Soft Services',
+        title: 'Façade Cleaning',
+        desc: 'Professional façade and high-rise glass cleaning carried out safely by trained teams, restoring the polished first impression every building deserves.'
+      },
+      restroom: {
+        eyebrow: 'Soft Services',
+        title: 'Restroom Sanitation',
+        desc: 'Housekeeping, janitorial and sanitisation delivered to five-star hygiene standards — restrooms and washrooms maintained around the clock.'
+      },
+      stp: {
+        eyebrow: 'STP & WTP Services',
+        title: 'STP & WTP Plant',
+        desc: 'Sewage and water treatment plant operations engineered for compliance and sustainability, keeping every system running reliably.'
+      },
+      landscaping: {
+        eyebrow: 'Gardening & Landscaping',
+        title: 'Landscaping',
+        desc: 'Thoughtful landscape design and upkeep that elevates every outdoor space, from ornamental gardens to everyday grounds maintenance.'
+      },
+      security: {
+        eyebrow: 'Security & Guarding',
+        title: 'Security & Guarding',
+        desc: 'Trained, uniformed personnel providing round-the-clock protection for people and premises across every site we manage.'
+      },
+      staffing: {
+        eyebrow: 'Staffing Services',
+        title: 'Staffing',
+        desc: 'Skilled manpower sourced, trained and deployed to keep operations running smoothly, backed by MaxService’s eighteen years of experience.'
+      },
+
+      // ---- Services-grid entries (the eight discipline cards above). Each
+      // carries its own dedicated `img` — unlike the work-gallery entries
+      // above, these aren't reused thumbnails, so an explicit path is needed.
+      'svc-ifm': {
+        eyebrow: 'Integrated Facility Management',
+        title: 'One accountable team, every discipline.',
+        desc: 'From daily operations to long-term asset planning, our facility managers coordinate every service under a single point of accountability — so nothing falls between departments, and nothing is ever your problem to chase.',
+        img: 'assets/svc-ifm.jpg'
+      },
+      'svc-soft': {
+        eyebrow: 'Soft Services',
+        title: 'Housekeeping, elevated.',
+        desc: 'Uniformed housekeeping and janitorial teams trained to five-star hygiene protocols, covering everything from daily desk sanitisation to deep-cleaning schedules — so your spaces always feel as good as they look.',
+        img: 'assets/svc-soft.jpg'
+      },
+      'svc-security': {
+        eyebrow: 'Security & Guarding',
+        title: 'Round-the-clock protection.',
+        desc: 'Trained, licensed security personnel stationed and supervised across every site we manage, backed by clear protocols, regular audits and rapid incident response — protection that never clocks off.',
+        img: 'assets/svc-security.jpg'
+      },
+      'svc-staffing': {
+        eyebrow: 'Staffing Services',
+        title: 'Skilled manpower, on demand.',
+        desc: 'We source, train and deploy skilled manpower matched to your operational needs, with every placement backed by MaxService’s eighteen years of workforce management experience.',
+        img: 'assets/svc-staffing.jpg'
+      },
+      'svc-mep': {
+        eyebrow: 'MEP Services',
+        title: 'Infrastructure that just works.',
+        desc: 'Mechanical, electrical and plumbing systems maintained by certified technicians on a preventive schedule — reducing downtime, extending asset life, and keeping critical infrastructure running safely.',
+        img: 'assets/svc-mep.jpg'
+      },
+      'svc-pest': {
+        eyebrow: 'Pest Control',
+        title: 'Scientific, eco-conscious protection.',
+        desc: 'Integrated pest management using low-toxicity, scientifically proven methods — protecting your facility and its occupants without disrupting daily operations.',
+        img: 'assets/svc-pest.jpg'
+      },
+      'svc-garden': {
+        eyebrow: 'Gardening & Landscaping',
+        title: 'Outdoor spaces, thoughtfully kept.',
+        desc: 'From ornamental gardens to everyday grounds maintenance, our landscaping teams design and maintain outdoor spaces that elevate the overall experience of every property.',
+        img: 'assets/svc-garden.jpg'
+      },
+      'svc-stp': {
+        eyebrow: 'STP & WTP Services',
+        title: 'Compliance, engineered in.',
+        desc: 'Sewage and water treatment plant operations managed by qualified engineers, ensuring continuous regulatory compliance and sustainable resource use across every facility.'
+        // no dedicated img — falls back to this card's own icon photo (already inlined once)
+      }
+    };
+
+    let lastFocused = null;
+    let currentIndex = -1;
+    let currentOrder = [];
+    // built from the DOM so it always matches the actual gallery/grid order, however it's edited
+    const WORK_ORDER = Array.from(document.querySelectorAll('.work-grid a[data-service]'))
+      .map(a => a.getAttribute('data-service'));
+    const SVC_ORDER = Array.from(document.querySelectorAll('.svc-card[data-service]'))
+      .map(c => c.getAttribute('data-service'));
+
+    function thumbFor(key){
+      const a = document.querySelector(`.work-grid a[data-service="${key}"]`);
+      const img = a ? a.querySelector('img') : null;
+      return img ? img.src : null;
+    }
+
+    function svcThumbFor(key){
+      const card = document.querySelector(`.svc-card[data-service="${key}"]`);
+      const img = card ? card.querySelector('.svc-icon img') : null;
+      return img ? img.src : null;
+    }
+
+    // Most services-grid cards carry their own dedicated `img` on the data
+    // entry; the rest (and every work-gallery item) reuse a thumbnail that's
+    // already on the page instead of embedding a duplicate copy of the photo.
+    function srcFor(key, thumbSrc){
+      const data = SERVICES[key];
+      if(data && data.img) return data.img;
+      if(SVC_ORDER.includes(key)) return svcThumbFor(key);
+      return thumbSrc;
+    }
+
+    function openLightbox(key, thumbSrc){
+      const data = SERVICES[key];
+      if(!data) return;
+      const imgSrc = srcFor(key, thumbSrc);
+      currentOrder = SVC_ORDER.includes(key) ? SVC_ORDER : WORK_ORDER;
+      currentIndex = currentOrder.indexOf(key);
+      // a quick crossfade on the photo when stepping between services, skipped on first open
+      const swapImg = !prefersReduced && hasGSAP && imgEl.src;
+      const bodyEls = [indexEl, eyebrowEl, titleEl, descEl, lightbox.querySelector('.lightbox-body .btn')].filter(Boolean);
+      const revealBody = ()=>{
+        if(!prefersReduced && hasGSAP){
+          gsap.fromTo(bodyEls, {opacity:0, y:16}, {opacity:1, y:0, duration:0.6, ease:'power3.out', stagger:0.07, delay:0.08});
+        } else {
+          bodyEls.forEach(el=>{ el.style.opacity = '1'; });
+        }
+      };
+      const applyContent = ()=>{
+        if(imgSrc) imgEl.src = imgSrc;
+        imgEl.alt = data.title;
+        if(indexEl) indexEl.textContent = currentIndex > -1 ? `${String(currentIndex+1).padStart(2,'0')} — ${String(currentOrder.length).padStart(2,'0')}` : '';
+        eyebrowEl.textContent = data.eyebrow;
+        titleEl.textContent = data.title;
+        descEl.textContent = data.desc;
+        revealBody();
+        // subtle Ken Burns zoom-in on the photo each time it changes
+        if(!prefersReduced && hasGSAP){
+          gsap.fromTo(imgEl, {scale:1.08}, {scale:1, duration:1.3, ease:'power3.out'});
+        }
+      };
+      if(swapImg){
+        gsap.to(imgEl, {opacity:0, duration:0.15, onComplete:()=>{
+          applyContent();
+          gsap.to(imgEl, {opacity:1, duration:0.25});
+        }});
+      } else {
+        applyContent();
+      }
+      lastFocused = lastFocused || document.activeElement;
+      lightbox.classList.add('is-open');
+      lightbox.setAttribute('aria-hidden','false');
+      document.body.classList.add('lightbox-open');
+      if(lenis) lenis.stop();
+      lightbox.querySelector('.lightbox-close').focus();
+    }
+
+    function closeLightbox(){
+      lightbox.classList.remove('is-open');
+      lightbox.setAttribute('aria-hidden','true');
+      document.body.classList.remove('lightbox-open');
+      if(lenis) lenis.start();
+      if(lastFocused && lastFocused.focus) lastFocused.focus();
+      lastFocused = null;
+    }
+
+    function step(dir){
+      if(currentIndex === -1 || !currentOrder.length) return;
+      const key = currentOrder[(currentIndex + dir + currentOrder.length) % currentOrder.length];
+      openLightbox(key, thumbFor(key));
+    }
+
+    document.querySelectorAll('.work-grid a[data-service]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        e.preventDefault();
+        const thumb = a.querySelector('img');
+        openLightbox(a.getAttribute('data-service'), thumb ? thumb.src : null);
+      });
+    });
+
+    // Services-grid cards: clicking anywhere on the card (or its "Learn more"
+    // link) opens the same lightbox, showing the matching photo + details.
+    document.querySelectorAll('.svc-card[data-service]').forEach(card=>{
+      const key = card.getAttribute('data-service');
+      card.addEventListener('click', e=>{
+        openLightbox(key);
+      });
+      const more = card.querySelector('a.svc-more');
+      if(more){
+        more.addEventListener('click', e=>{
+          e.preventDefault();
+          e.stopPropagation();
+          openLightbox(key);
+        });
+      }
+    });
+
+    lightbox.querySelector('[data-lightbox-prev]').addEventListener('click', ()=> step(-1));
+    lightbox.querySelector('[data-lightbox-next]').addEventListener('click', ()=> step(1));
+
+    lightbox.querySelectorAll('[data-lightbox-close]').forEach(el=>{
+      el.addEventListener('click', e=>{
+        const href = el.getAttribute('href');
+        closeLightbox();
+        if(href && href.charAt(0)==='#' && href.length>1){
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if(target){
+            requestAnimationFrame(()=>{
+              if(lenis) lenis.scrollTo(target, {offset:-10});
+              else target.scrollIntoView({behavior: prefersReduced ? 'auto' : 'smooth'});
+            });
+          }
+        } else {
+          e.preventDefault();
+        }
+      });
+    });
+
+    document.addEventListener('keydown', e=>{
+      if(!lightbox.classList.contains('is-open')) return;
+      if(e.key === 'Escape') closeLightbox();
+      else if(e.key === 'ArrowLeft'){ e.preventDefault(); step(-1); }
+      else if(e.key === 'ArrowRight'){ e.preventDefault(); step(1); }
+    });
+  })();
+})();
+</script>
+
+</body>
+</html>
