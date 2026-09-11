@@ -256,59 +256,7 @@
   .pro-banner h3{font-size:26px;color:var(--white);font-weight:500;margin-bottom:8px;}
   .pro-banner p{font-size:14px;color:rgba(255,255,255,0.65);max-width:480px;}
 
-  /* ===== COVERAGE MAP ===== */
-  .coverage{padding:130px 0;background:var(--cream);}
-  .coverage-head{max-width:640px;margin-bottom:50px;}
-  .coverage-head h2{font-size:clamp(30px,3.4vw,46px);max-width:620px;}
-  .coverage-head .lead{color:var(--ink-soft);font-size:15px;margin-top:16px;max-width:520px;}
-  .coverage-stage{position:relative;width:100%;max-width:920px;margin:0 auto;aspect-ratio:860/560;}
-  .coverage-surface{position:absolute;inset:0;background:linear-gradient(160deg,var(--cream-2) 0%,var(--cream) 72%);border:1px solid var(--line);border-radius:22px;overflow:hidden;}
-  .coverage-map-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
-  .coverage-tag{position:absolute;font-family:'Inter',sans-serif;font-size:11px;letter-spacing:0.16em;color:var(--bronze);text-transform:uppercase;pointer-events:none;}
-  .coverage-tag.city{top:22px;left:26px;}
-  .coverage-tag.orr{top:22px;right:26px;text-align:right;}
-  .coverage-pins{position:absolute;inset:0;pointer-events:none;}
-  .pin{
-    position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%);
-    display:flex;flex-direction:column;align-items:center;gap:8px;
-    background:none;border:0;padding:0;cursor:pointer;pointer-events:auto;font-family:inherit;
-  }
-  .pin-marker{display:block;position:relative;width:10px;height:10px;flex:none;}
-  .pin-dot{display:block;width:10px;height:10px;border-radius:50%;background:var(--bronze);box-shadow:0 0 0 3px var(--cream-2);position:relative;z-index:2;transition:background .25s ease;}
-  .pin-ring{
-    position:absolute;top:0;left:0;width:10px;height:10px;
-    border-radius:50%;background:var(--bronze-light);
-    animation:pin-ping 2.4s ease-out infinite;animation-delay:var(--d,0s);z-index:1;
-  }
-  @keyframes pin-ping{
-    0%{transform:scale(1);opacity:.55;}
-    70%{transform:scale(3.4);opacity:0;}
-    100%{transform:scale(3.4);opacity:0;}
-  }
-  .pin-label{
-    font-size:11.5px;letter-spacing:0.03em;color:var(--ink-soft);white-space:nowrap;
-    background:rgba(247,244,238,0.85);padding:2px 9px;border-radius:20px;
-  }
-  .pin-card{
-    position:absolute;bottom:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(6px);
-    min-width:200px;max-width:240px;background:var(--dark);color:var(--white);
-    border-radius:10px;padding:14px 16px;font-size:13px;line-height:1.4;text-align:left;
-    opacity:0;visibility:hidden;transition:opacity .25s ease, transform .25s ease;pointer-events:none;z-index:5;
-  }
-  .pin-card strong{display:block;font-family:'Fraunces',serif;font-size:15px;margin-bottom:8px;font-weight:500;}
-  .pin-tags{display:flex;flex-wrap:wrap;gap:6px;}
-  .pin-tags em{
-    font-style:normal;font-size:10.5px;letter-spacing:0.04em;text-transform:uppercase;
-    background:rgba(255,255,255,0.12);padding:3px 8px;border-radius:20px;color:rgba(255,255,255,0.85);
-  }
-  .pin:hover .pin-card,.pin:focus-visible .pin-card,.pin.is-open .pin-card{
-    opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);
-  }
-  .pin:hover .pin-dot,.pin.is-open .pin-dot{background:var(--bronze-light);}
-  .coverage-note{margin-top:22px;font-size:12.5px;color:var(--muted);text-align:center;}
-  @media (prefers-reduced-motion:reduce){
-    .pin-ring{animation:none;opacity:.3;}
-  }
+  /* ===== SECTOR SPOTLIGHT TABS ===== */
 
   /* ===== SERVICE LIGHTBOX (full-screen takeover) ===== */
   .lightbox{position:fixed;inset:0;z-index:200;visibility:hidden;opacity:0;transition:opacity .5s ease, visibility 0s linear .5s;}
@@ -374,15 +322,25 @@
   .sectors .top{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:64px;flex-wrap:wrap;gap:30px;}
   .sectors h2{color:var(--white);font-size:clamp(32px,3.6vw,48px);max-width:520px;}
   .sectors .top p{color:rgba(255,255,255,0.55);font-size:15px;max-width:340px;}
-  .sector-list{display:grid;grid-template-columns:repeat(3,1fr);}
-  .sector-list div{
-    border-top:1px solid rgba(255,255,255,0.16);
-    padding:26px 26px 26px 0;
-    font-family:'Fraunces',serif;font-size:clamp(18px,1.7vw,23px);font-weight:400;
-    color:rgba(255,255,255,0.92);
-    display:flex;align-items:baseline;gap:14px;
+  .sector-tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:8px;}
+  .sector-tab{
+    font-family:'Inter',sans-serif;font-size:13px;letter-spacing:0.02em;
+    color:rgba(255,255,255,0.62);background:transparent;border:1px solid rgba(255,255,255,0.22);
+    padding:10px 20px;border-radius:30px;cursor:pointer;transition:all .25s ease;font-weight:500;
   }
-  .sector-list div span{font-family:'Inter',sans-serif;font-size:11px;color:var(--bronze-light);letter-spacing:0.05em;}
+  .sector-tab span{color:var(--bronze-light);margin-right:8px;font-size:11px;}
+  .sector-tab:hover{border-color:var(--bronze-light);color:var(--white);}
+  .sector-tab.is-active{background:var(--bronze);border-color:var(--bronze);color:var(--white);}
+  .sector-tab.is-active span{color:rgba(255,255,255,0.75);}
+  .sector-panel{position:relative;min-height:168px;border-top:1px solid rgba(255,255,255,0.16);padding-top:44px;margin-top:36px;}
+  .sector-panel-item{display:none;}
+  .sector-panel-item.is-active{display:block;animation:sectorFade .45s ease;}
+  .sector-panel-item h3{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(24px,2.4vw,32px);color:var(--white);margin:0 0 14px;}
+  .sector-panel-item p{color:rgba(255,255,255,0.68);font-size:15.5px;line-height:1.7;max-width:640px;margin:0;}
+  @keyframes sectorFade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  @media (prefers-reduced-motion:reduce){
+    .sector-panel-item.is-active{animation:none;}
+  }
 
   /* ===== CLIENTS ===== */
   .clients{padding:100px 0;}
@@ -460,7 +418,6 @@
     }
     .services-banner-copy{align-items:flex-end;padding-bottom:44px;}
     .services-banner-copy .inner{max-width:none;}
-    .sector-list{grid-template-columns:repeat(2,1fr);}
     .cta{grid-template-columns:1fr;}
     .cta .img-panel{min-height:280px;}
     .footer-top{grid-template-columns:1fr 1fr;}
@@ -476,7 +433,6 @@
     .pin-label{font-size:10px;padding:2px 7px;}
     .pin-card{min-width:170px;max-width:200px;font-size:12px;padding:12px 14px;}
     .pin-card strong{font-size:13.5px;}
-    .sector-list{grid-template-columns:1fr;}
     .footer-top{grid-template-columns:1fr;gap:34px;}
     .about-img .badge{left:0;bottom:-24px;}
     .pro-banner{padding:36px 28px;}
@@ -494,7 +450,6 @@
     <nav class="mainnav">
       <a href="#about">About</a>
       <a href="#services">Services</a>
-      <a href="#coverage">Coverage</a>
       <a href="#sectors">Sectors</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -679,90 +634,60 @@
   </div>
 </section>
 
-<section class="coverage" id="coverage">
-  <div class="wrap">
-    <div class="coverage-head fade-up">
-      <div class="eyebrow">Where We Operate</div>
-      <h2>Eighteen years across Bengaluru, nine sectors deep.</h2>
-      <p class="lead">A look at where MaxService teams are actively deployed today &mdash; from the tech corridors along the Outer Ring Road to the industrial belts on the city's edge.</p>
-    </div>
-    <div class="coverage-stage fade-up">
-      <div class="coverage-surface">
-        <img class="coverage-map-img" src="assets/coverage-map.jpg" alt="Stylized editorial map of Bengaluru showing MaxService's active service coverage across the city">
-        <span class="coverage-tag city">Greater Bengaluru</span>
-        <span class="coverage-tag orr">Outer Ring Road</span>
-      </div>
-      <div class="coverage-pins">
-        <button type="button" class="pin" data-area="peenya" style="--x:21%;--y:22%;--d:0s">
-          <span class="pin-marker"><span class="pin-ring"></span><span class="pin-dot"></span></span>
-          <span class="pin-label">Peenya Industrial Belt</span>
-          <span class="pin-card">
-            <strong>Peenya Industrial Belt</strong>
-            <span class="pin-tags"><em>Industrial &amp; Manufacturing</em><em>Corporates</em></span>
-          </span>
-        </button>
-        <button type="button" class="pin" data-area="whitefield" style="--x:80%;--y:42%;--d:.25s">
-          <span class="pin-marker"><span class="pin-ring"></span><span class="pin-dot"></span></span>
-          <span class="pin-label">Whitefield</span>
-          <span class="pin-card">
-            <strong>Whitefield</strong>
-            <span class="pin-tags"><em>IT Parks &amp; SEZ</em><em>Educational Institutions</em><em>Malls</em></span>
-          </span>
-        </button>
-        <button type="button" class="pin" data-area="orr" style="--x:76%;--y:60%;--d:.5s">
-          <span class="pin-marker"><span class="pin-ring"></span><span class="pin-dot"></span></span>
-          <span class="pin-label">ORR Tech Corridor</span>
-          <span class="pin-card">
-            <strong>ORR Tech Corridor</strong>
-            <span class="pin-tags"><em>IT Parks &amp; SEZ</em><em>Corporates</em></span>
-          </span>
-        </button>
-        <button type="button" class="pin" data-area="cbd" style="--x:46%;--y:44%;--d:.75s">
-          <span class="pin-marker"><span class="pin-ring"></span><span class="pin-dot"></span></span>
-          <span class="pin-label">MG Road / UB City</span>
-          <span class="pin-card">
-            <strong>MG Road / UB City</strong>
-            <span class="pin-tags"><em>Commercial Real Estate</em><em>Hospitality</em><em>Retail Outlets</em></span>
-          </span>
-        </button>
-        <button type="button" class="pin" data-area="koramangala" style="--x:54%;--y:63%;--d:1s">
-          <span class="pin-marker"><span class="pin-ring"></span><span class="pin-dot"></span></span>
-          <span class="pin-label">Koramangala</span>
-          <span class="pin-card">
-            <strong>Koramangala</strong>
-            <span class="pin-tags"><em>Corporates</em><em>Healthcare Facilities</em><em>Hospitality</em></span>
-          </span>
-        </button>
-        <button type="button" class="pin" data-area="electronic-city" style="--x:51%;--y:88%;--d:1.25s">
-          <span class="pin-marker"><span class="pin-ring"></span><span class="pin-dot"></span></span>
-          <span class="pin-label">Electronic City</span>
-          <span class="pin-card">
-            <strong>Electronic City</strong>
-            <span class="pin-tags"><em>IT Parks &amp; SEZ</em><em>Industrial &amp; Manufacturing</em></span>
-          </span>
-        </button>
-      </div>
-    </div>
-    <p class="coverage-note fade-up">Illustrative coverage map, updated periodically &mdash; not drawn to exact scale.</p>
-  </div>
-</section>
-
 <section class="sectors" id="sectors">
   <div class="wrap">
     <div class="top fade-up">
       <h2>Trusted across sectors.</h2>
-      <p>Our satisfied clients span a broad range of industries across Bengaluru and beyond.</p>
+      <p>Nine industries, one accountable service partner &mdash; select a sector to see how we serve it.</p>
     </div>
-    <div class="sector-list fade-up">
-      <div><span>01</span> Corporates</div>
-      <div><span>02</span> Healthcare Facilities</div>
-      <div><span>03</span> Malls</div>
-      <div><span>04</span> Educational Institutions</div>
-      <div><span>05</span> Industrial &amp; Manufacturing</div>
-      <div><span>06</span> Retail Outlets</div>
-      <div><span>07</span> Commercial Real Estate</div>
-      <div><span>08</span> IT Parks &amp; SEZ</div>
-      <div><span>09</span> Hospitality</div>
+    <div class="sector-tabs fade-up" role="tablist" aria-label="Sectors we serve">
+      <button type="button" class="sector-tab is-active" data-sector="corporates" role="tab" aria-selected="true"><span>01</span>Corporates</button>
+      <button type="button" class="sector-tab" data-sector="healthcare" role="tab" aria-selected="false"><span>02</span>Healthcare Facilities</button>
+      <button type="button" class="sector-tab" data-sector="malls" role="tab" aria-selected="false"><span>03</span>Malls</button>
+      <button type="button" class="sector-tab" data-sector="education" role="tab" aria-selected="false"><span>04</span>Educational Institutions</button>
+      <button type="button" class="sector-tab" data-sector="industrial" role="tab" aria-selected="false"><span>05</span>Industrial &amp; Manufacturing</button>
+      <button type="button" class="sector-tab" data-sector="retail" role="tab" aria-selected="false"><span>06</span>Retail Outlets</button>
+      <button type="button" class="sector-tab" data-sector="realestate" role="tab" aria-selected="false"><span>07</span>Commercial Real Estate</button>
+      <button type="button" class="sector-tab" data-sector="itparks" role="tab" aria-selected="false"><span>08</span>IT Parks &amp; SEZ</button>
+      <button type="button" class="sector-tab" data-sector="hospitality" role="tab" aria-selected="false"><span>09</span>Hospitality</button>
+    </div>
+    <div class="sector-panel fade-up">
+      <div class="sector-panel-item is-active" data-sector="corporates">
+        <h3>Corporates</h3>
+        <p>From single-floor offices to multi-building campuses, we run daily housekeeping, front-of-house staffing, and mechanical &amp; electrical upkeep as one coordinated service &mdash; so the facility stays invisible to the people working in it.</p>
+      </div>
+      <div class="sector-panel-item" data-sector="healthcare">
+        <h3>Healthcare Facilities</h3>
+        <p>Hospitals and clinics need infection-control-grade cleaning and staff trained to hospital hygiene protocols. We provide both, alongside MEP and STP maintenance for facilities that can't tolerate downtime.</p>
+      </div>
+      <div class="sector-panel-item" data-sector="malls">
+        <h3>Malls</h3>
+        <p>High footfall and public-safety stakes call for security and housekeeping teams sized for peak hours and weekend crowds, with landscaping and pest control layered in on a fixed schedule.</p>
+      </div>
+      <div class="sector-panel-item" data-sector="education">
+        <h3>Educational Institutions</h3>
+        <p>Campuses run on an academic calendar, not a corporate one. We coordinate housekeeping, gardening, and security around term time, exam season, and the safety standards a student population requires.</p>
+      </div>
+      <div class="sector-panel-item" data-sector="industrial">
+        <h3>Industrial &amp; Manufacturing</h3>
+        <p>Factory floors need a heavier-duty service model &mdash; STP plant operation, MEP upkeep, and safety-trained staffing that understands shop-floor protocol rather than office etiquette.</p>
+      </div>
+      <div class="sector-panel-item" data-sector="retail">
+        <h3>Retail Outlets</h3>
+        <p>Constant footfall means constant upkeep. We manage housekeeping, pest control, and security on schedules built around trading hours, not office hours.</p>
+      </div>
+      <div class="sector-panel-item" data-sector="realestate">
+        <h3>Commercial Real Estate</h3>
+        <p>For landlords and property managers, we run the full stack &mdash; housekeeping, security, MEP, and grounds &mdash; as a single accountable service across a building or a portfolio, with unified reporting.</p>
+      </div>
+      <div class="sector-panel-item" data-sector="itparks">
+        <h3>IT Parks &amp; SEZ</h3>
+        <p>Large campuses need round-the-clock coverage. We deploy dedicated on-site teams for housekeeping, security, and MEP maintenance, with a single point of contact managing every shift.</p>
+      </div>
+      <div class="sector-panel-item" data-sector="hospitality">
+        <h3>Hospitality</h3>
+        <p>Guest-facing spaces demand a different standard &mdash; front-of-house presentation, rapid-turnaround housekeeping, and the discretion hotels and serviced residences expect from every member of staff.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -799,7 +724,6 @@
         <h5>Company</h5>
         <a href="#about">About Us</a>
         <a href="#services">Our Services</a>
-        <a href="#coverage">Coverage</a>
         <a href="#contact">Contact Us</a>
       </div>
       <div class="fcol">
@@ -1050,22 +974,21 @@
     });
   }
 
-  /* ---------- Coverage map pins: tap-to-open (in addition to hover) ---------- */
+  /* ---------- Sector spotlight tabs ---------- */
   (function(){
-    const pins = document.querySelectorAll('.coverage-pins .pin');
-    if(!pins.length) return;
-    pins.forEach(pin=>{
-      pin.addEventListener('click', (e)=>{
-        e.preventDefault();
-        const wasOpen = pin.classList.contains('is-open');
-        pins.forEach(p=>p.classList.remove('is-open'));
-        if(!wasOpen) pin.classList.add('is-open');
+    const tabs = document.querySelectorAll('.sector-tab');
+    const panels = document.querySelectorAll('.sector-panel-item');
+    if(!tabs.length) return;
+    tabs.forEach(tab=>{
+      tab.addEventListener('click', ()=>{
+        const key = tab.dataset.sector;
+        tabs.forEach(t=>{
+          const active = t === tab;
+          t.classList.toggle('is-active', active);
+          t.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+        panels.forEach(p=>p.classList.toggle('is-active', p.dataset.sector === key));
       });
-    });
-    document.addEventListener('click', (e)=>{
-      if(!e.target.closest('.coverage-pins .pin')){
-        pins.forEach(p=>p.classList.remove('is-open'));
-      }
     });
   })();
 
