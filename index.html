@@ -261,21 +261,23 @@
   .coverage-head{max-width:640px;margin-bottom:50px;}
   .coverage-head h2{font-size:clamp(30px,3.4vw,46px);max-width:620px;}
   .coverage-head .lead{color:var(--ink-soft);font-size:15px;margin-top:16px;max-width:520px;}
-  .coverage-stage{position:relative;width:100%;aspect-ratio:800/560;background:var(--cream);border:1px solid var(--line);border-radius:18px;overflow:hidden;}
+  .coverage-stage{position:relative;width:100%;max-width:660px;margin:0 auto;aspect-ratio:860/720;}
+  .coverage-surface{position:absolute;inset:0;background:linear-gradient(160deg,var(--cream-2) 0%,var(--cream) 72%);border:1px solid var(--line);border-radius:22px;overflow:hidden;}
   .coverage-svg{position:absolute;inset:0;width:100%;height:100%;display:block;}
-  .cov-extent{fill:var(--cream-2);stroke:var(--line);stroke-width:1.5;}
-  .cov-roads line{stroke:var(--line);stroke-width:1.5;}
-  .cov-orr{fill:none;stroke:var(--bronze-light);stroke-width:2.5;stroke-dasharray:2 10;stroke-linecap:round;}
-  .cov-orr-label{font-family:'Inter',sans-serif;font-size:12px;letter-spacing:0.14em;fill:var(--bronze);text-transform:uppercase;}
+  .cov-park{fill:var(--bronze-light);opacity:0.16;}
+  .cov-artery{stroke:var(--line);stroke-width:1.6;stroke-linecap:round;}
+  .cov-orr{fill:none;stroke:var(--bronze);stroke-width:2.5;stroke-dasharray:13 9;stroke-linecap:butt;opacity:0.85;}
+  .cov-orr-label{font-family:'Inter',sans-serif;font-size:11.5px;letter-spacing:0.14em;fill:var(--bronze);text-transform:uppercase;}
   .coverage-pins{position:absolute;inset:0;pointer-events:none;}
   .pin{
     position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%);
     display:flex;flex-direction:column;align-items:center;gap:8px;
     background:none;border:0;padding:0;cursor:pointer;pointer-events:auto;font-family:inherit;
   }
-  .pin-dot{width:10px;height:10px;border-radius:50%;background:var(--bronze);box-shadow:0 0 0 3px var(--cream-2);position:relative;z-index:2;transition:background .25s ease;}
+  .pin-marker{display:block;position:relative;width:10px;height:10px;flex:none;}
+  .pin-dot{display:block;width:10px;height:10px;border-radius:50%;background:var(--bronze);box-shadow:0 0 0 3px var(--cream-2);position:relative;z-index:2;transition:background .25s ease;}
   .pin-ring{
-    position:absolute;top:50%;left:50%;width:10px;height:10px;margin:-5px 0 0 -5px;
+    position:absolute;top:0;left:0;width:10px;height:10px;
     border-radius:50%;background:var(--bronze-light);
     animation:pin-ping 2.4s ease-out infinite;animation-delay:var(--d,0s);z-index:1;
   }
@@ -686,64 +688,66 @@
       <p class="lead">A look at where MaxService teams are actively deployed today &mdash; from the tech corridors along the Outer Ring Road to the industrial belts on the city's edge.</p>
     </div>
     <div class="coverage-stage fade-up">
-      <svg class="coverage-svg" viewBox="0 0 800 560" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-        <rect class="cov-extent" x="30" y="20" width="740" height="520" rx="70"></rect>
-        <g class="cov-roads">
-          <line x1="400" y1="300" x2="400" y2="40"></line>
-          <line x1="400" y1="300" x2="620" y2="120"></line>
-          <line x1="400" y1="300" x2="760" y2="300"></line>
-          <line x1="400" y1="300" x2="620" y2="480"></line>
-          <line x1="400" y1="300" x2="400" y2="540"></line>
-          <line x1="400" y1="300" x2="180" y2="480"></line>
-          <line x1="400" y1="300" x2="60" y2="300"></line>
-          <line x1="400" y1="300" x2="180" y2="120"></line>
-        </g>
-        <ellipse class="cov-orr" cx="430" cy="320" rx="230" ry="170"></ellipse>
-        <text class="cov-orr-label" x="612" y="145">Outer Ring Road</text>
-      </svg>
+      <div class="coverage-surface">
+        <svg class="coverage-svg" viewBox="0 0 860 720" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          <!-- Traced from the real coordinates of the Outer Ring Road's own junctions
+               (Hebbal, K.R. Puram, Marathahalli, Bellandur, Silk Board, Banashankari,
+               Nagarbhavi) rather than a generic ellipse, so the loop's lopsided shape
+               is genuine, not decorative. Arterial lines run by real bearing from the
+               MG Road / UB City point, not a symmetric crosshair. -->
+          <circle class="cov-park" cx="341.9" cy="309.7" r="15"></circle>
+          <g class="cov-artery">
+            <line x1="359.1" y1="312.9" x2="134.8" y2="162.5"></line>
+            <line x1="359.1" y1="312.9" x2="659.2" y2="323.1"></line>
+            <line x1="359.1" y1="312.9" x2="541.9" y2="644.2"></line>
+          </g>
+          <path class="cov-orr" d="M 340.2 124.3 C 408.2 105.3 508.3 201.7 555.8 241.0 C 603.3 280.3 625.0 326.7 625.2 360.0 C 625.4 393.3 591.2 423.1 556.9 440.6 C 522.6 458.1 472.1 469.9 419.3 464.9 C 366.5 459.9 285.4 429.0 240.1 410.6 C 194.8 392.2 130.8 402.5 147.5 354.8 C 164.2 307.1 272.1 143.3 340.2 124.3 Z"></path>
+          <text class="cov-orr-label" x="460" y="104">Outer Ring Road</text>
+        </svg>
+      </div>
       <div class="coverage-pins">
-        <button type="button" class="pin" data-area="peenya" style="--x:26.25%;--y:30.36%;--d:0s">
-          <span class="pin-ring"></span><span class="pin-dot"></span>
+        <button type="button" class="pin" data-area="peenya" style="--x:15.67%;--y:22.57%;--d:0s">
+          <span class="pin-marker"><span class="pin-ring"></span><span class="pin-dot"></span></span>
           <span class="pin-label">Peenya Industrial Belt</span>
           <span class="pin-card">
             <strong>Peenya Industrial Belt</strong>
             <span class="pin-tags"><em>Industrial &amp; Manufacturing</em><em>Corporates</em></span>
           </span>
         </button>
-        <button type="button" class="pin" data-area="whitefield" style="--x:85%;--y:33.93%;--d:.25s">
-          <span class="pin-ring"></span><span class="pin-dot"></span>
+        <button type="button" class="pin" data-area="whitefield" style="--x:76.65%;--y:44.88%;--d:.25s">
+          <span class="pin-marker"><span class="pin-ring"></span><span class="pin-dot"></span></span>
           <span class="pin-label">Whitefield</span>
           <span class="pin-card">
             <strong>Whitefield</strong>
             <span class="pin-tags"><em>IT Parks &amp; SEZ</em><em>Educational Institutions</em><em>Malls</em></span>
           </span>
         </button>
-        <button type="button" class="pin" data-area="orr" style="--x:77.5%;--y:41.07%;--d:.5s">
-          <span class="pin-ring"></span><span class="pin-dot"></span>
+        <button type="button" class="pin" data-area="orr" style="--x:68.73%;--y:55.6%;--d:.5s">
+          <span class="pin-marker"><span class="pin-ring"></span><span class="pin-dot"></span></span>
           <span class="pin-label">ORR Tech Corridor</span>
           <span class="pin-card">
             <strong>ORR Tech Corridor</strong>
             <span class="pin-tags"><em>IT Parks &amp; SEZ</em><em>Corporates</em></span>
           </span>
         </button>
-        <button type="button" class="pin" data-area="cbd" style="--x:50%;--y:53.57%;--d:.75s">
-          <span class="pin-ring"></span><span class="pin-dot"></span>
+        <button type="button" class="pin" data-area="cbd" style="--x:41.76%;--y:43.46%;--d:.75s">
+          <span class="pin-marker"><span class="pin-ring"></span><span class="pin-dot"></span></span>
           <span class="pin-label">MG Road / UB City</span>
           <span class="pin-card">
             <strong>MG Road / UB City</strong>
             <span class="pin-tags"><em>Commercial Real Estate</em><em>Hospitality</em><em>Retail Outlets</em></span>
           </span>
         </button>
-        <button type="button" class="pin" data-area="koramangala" style="--x:57.5%;--y:67.86%;--d:1s">
-          <span class="pin-ring"></span><span class="pin-dot"></span>
+        <button type="button" class="pin" data-area="koramangala" style="--x:48.72%;--y:61.26%;--d:1s">
+          <span class="pin-marker"><span class="pin-ring"></span><span class="pin-dot"></span></span>
           <span class="pin-label">Koramangala</span>
           <span class="pin-card">
             <strong>Koramangala</strong>
             <span class="pin-tags"><em>Corporates</em><em>Healthcare Facilities</em><em>Hospitality</em></span>
           </span>
         </button>
-        <button type="button" class="pin" data-area="electronic-city" style="--x:53.75%;--y:89.29%;--d:1.25s">
-          <span class="pin-ring"></span><span class="pin-dot"></span>
+        <button type="button" class="pin" data-area="electronic-city" style="--x:63.01%;--y:89.47%;--d:1.25s">
+          <span class="pin-marker"><span class="pin-ring"></span><span class="pin-dot"></span></span>
           <span class="pin-label">Electronic City</span>
           <span class="pin-card">
             <strong>Electronic City</strong>
