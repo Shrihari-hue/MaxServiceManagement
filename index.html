@@ -1115,6 +1115,17 @@
       }
     };
 
+    // Warm the browser cache for every dedicated lightbox photo up front, so
+    // stepping through services with the prev/next arrows swaps instantly
+    // instead of fetching each full-size image on demand (each is small —
+    // ~20-40KB — so this costs very little bandwidth even on first load).
+    Object.values(SERVICES).forEach(data => {
+      if(data.img){
+        const preloadImg = new Image();
+        preloadImg.src = data.img;
+      }
+    });
+
     let lastFocused = null;
     let currentIndex = -1;
     let currentOrder = [];
@@ -1178,7 +1189,16 @@
       if(swapImg){
         gsap.to(imgEl, {opacity:0, duration:0.15, onComplete:()=>{
           applyContent();
-          gsap.to(imgEl, {opacity:1, duration:0.25});
+          // wait for the (now-preloaded, so normally instant) image to actually
+          // finish loading before fading it back in, rather than assuming it's
+          // ready — avoids a flash of a blank frame on a slow connection
+          const fadeIn = ()=> gsap.to(imgEl, {opacity:1, duration:0.25});
+          if(imgEl.complete && imgEl.naturalWidth > 0){
+            fadeIn();
+          } else {
+            imgEl.addEventListener('load', fadeIn, {once:true});
+            imgEl.addEventListener('error', fadeIn, {once:true});
+          }
         }});
       } else {
         applyContent();
