@@ -23,6 +23,7 @@
     --dark-2:#1e1b15;
     --bronze:#a3663c;
     --bronze-light:#c98a5e;
+    --brand-red:#c8391f;
     --white:#ffffff;
     --maxw:1240px;
   }
@@ -77,8 +78,8 @@
   }
   .brand{display:flex;align-items:center;gap:12px;}
   .brand img{height:34px;width:auto;}
-  .brand-text{font-family:'Fraunces',serif;font-size:19px;letter-spacing:0.03em;color:var(--white);font-weight:500;transition:color .4s ease;}
-  header.scrolled .brand-text{color:var(--ink);}
+  .brand-text{font-family:'Fraunces',serif;font-size:19px;letter-spacing:0.03em;color:var(--brand-red);font-weight:500;transition:color .4s ease;}
+  header.scrolled .brand-text{color:var(--brand-red);}
   .brand-text span{display:block;font-family:'Inter',sans-serif;font-size:9px;letter-spacing:0.22em;font-weight:500;color:var(--bronze-light);margin-top:2px;}
   header.scrolled .brand-text span{color:var(--bronze);}
 
@@ -413,7 +414,7 @@
   .footer-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:50px;padding-bottom:60px;}
   .footer-brand{display:flex;align-items:center;gap:12px;margin-bottom:18px;}
   .footer-brand img{height:30px;}
-  .footer-brand span{font-family:'Fraunces',serif;color:var(--white);font-size:18px;}
+  .footer-brand span{font-family:'Fraunces',serif;color:var(--brand-red);font-size:18px;}
   footer p.tag{font-size:13.5px;color:rgba(255,255,255,0.45);max-width:260px;line-height:1.7;}
   .fcol h5{font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.9);margin-bottom:20px;font-weight:600;}
   .fcol a,.fcol div{display:block;font-size:13.5px;color:rgba(255,255,255,0.5);margin-bottom:12px;transition:color .3s;}
@@ -467,7 +468,7 @@
   }
   .mobile-nav.is-open .mobile-nav-panel{transform:translateX(0);}
   .mobile-nav-top{display:flex;align-items:center;justify-content:space-between;padding:22px 22px 26px;}
-  .mobile-nav-top .brand-text{color:var(--ink);}
+  .mobile-nav-top .brand-text{color:var(--brand-red);}
   .mobile-nav-top .brand-text span{display:block;color:var(--bronze);}
   .mobile-nav-close{
     display:flex;align-items:center;justify-content:center;width:44px;height:44px;
@@ -499,7 +500,7 @@
 <header id="siteHeader">
   <div class="wrap">
     <a href="#" class="brand">
-      <img src="assets/logo_white.png" alt="MaxService">
+      <img src="assets/logo_red.png" alt="MaxService">
       <span class="brand-text">MaxService<span>FACILITY MANAGEMENT</span></span>
     </a>
     <nav class="mainnav">
@@ -521,7 +522,7 @@
   <div class="mobile-nav-panel">
     <div class="mobile-nav-top">
       <a href="#" class="brand" data-mobile-nav-close>
-        <img src="assets/logo_white.png" alt="MaxService" style="height:28px;">
+        <img src="assets/logo_red.png" alt="MaxService" style="height:28px;">
         <span class="brand-text">MaxService<span>FACILITY MANAGEMENT</span></span>
       </a>
       <button type="button" class="mobile-nav-close" data-mobile-nav-close aria-label="Close menu">
@@ -795,7 +796,7 @@
     <div class="footer-top">
       <div>
         <div class="footer-brand">
-          <img src="assets/logo_bronze.png" alt="MaxService">
+          <img src="assets/logo_red.png" alt="MaxService">
           <span>MaxService</span>
         </div>
         <p class="tag">Integrated facility management, delivered with quiet precision — Bengaluru's trusted partner for eighteen years.</p>
@@ -821,7 +822,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 MaxService Facility Management. All rights reserved.</span>
+      <span><span style="color:var(--brand-red);font-weight:600;">MaxService Facility Management Pvt Ltd</span> — © 2026. All rights reserved.</span>
       <span>Design refreshed with care.</span>
     </div>
   </div>
