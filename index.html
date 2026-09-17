@@ -284,6 +284,7 @@
     background:linear-gradient(90deg,rgba(12,10,8,0) 70%,rgba(12,10,8,0.35) 100%),
                linear-gradient(0deg,rgba(12,10,8,0.28),rgba(12,10,8,0) 22%);
   }
+  .lightbox-media:has(img.is-contain)::after{display:none;}
   .lightbox-body{
     padding:clamp(48px,6vw,110px) clamp(40px,5vw,96px);
     display:flex;flex-direction:column;justify-content:center;gap:20px;max-width:640px;
@@ -1255,29 +1256,26 @@
       'svc-stp': {
         eyebrow: 'STP & WTP Services',
         title: 'Compliance, engineered in.',
-        desc: 'Sewage and water treatment plant operations managed by qualified engineers, ensuring continuous regulatory compliance and sustainable resource use across every facility.'
-        // no dedicated img — falls back to this card's own icon photo (already inlined once)
+        desc: 'Sewage and water treatment plant operations managed by qualified engineers, ensuring continuous regulatory compliance and sustainable resource use across every facility.',
+        img: 'assets/svc-stp.jpg'
       },
       'svc-residential': {
         eyebrow: 'Apartments & Residential Complexes',
         title: 'Community living, consistently kept.',
         desc: 'Housekeeping, security, landscaping and STP/WTP upkeep run on one schedule for gated communities, with a single point of contact for the RWA or management committee.',
-        img: 'assets/svc-residential.jpg',
-        fit: 'contain'
+        img: 'assets/svc-residential.jpg'
       },
       'svc-logistics': {
         eyebrow: 'Logistics Parks',
         title: 'Built for round-the-clock operations.',
         desc: 'MEP upkeep, security and housekeeping staffed in shifts to match dock schedules, with safety-trained teams who understand a working warehouse floor.',
-        img: 'assets/svc-logistics.jpg',
-        fit: 'contain'
+        img: 'assets/svc-logistics.jpg'
       },
       'svc-finance': {
         eyebrow: 'Financial Consulting',
         title: 'Facility spend, put under scrutiny.',
         desc: 'Cost audits and budget advisory for finance and consulting firms, plus the same discreet, polished housekeeping and MEP upkeep their client-facing offices need every day.',
-        img: 'assets/svc-finance.jpg',
-        fit: 'contain'
+        img: 'assets/svc-finance.jpg'
       }
     };
 
