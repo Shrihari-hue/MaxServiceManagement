@@ -80,8 +80,8 @@
   .brand img{height:34px;width:auto;}
   .brand-text{font-family:'Fraunces',serif;font-size:19px;letter-spacing:0.03em;color:var(--brand-red);font-weight:500;transition:color .4s ease;}
   header.scrolled .brand-text{color:var(--brand-red);}
-  .brand-text span{display:block;font-family:'Inter',sans-serif;font-size:9px;letter-spacing:0.22em;font-weight:500;color:var(--bronze-light);margin-top:2px;}
-  header.scrolled .brand-text span{color:var(--bronze);}
+  .brand-text span{display:block;font-family:'Inter',sans-serif;font-size:9px;letter-spacing:0.22em;font-weight:500;color:var(--brand-red);margin-top:2px;}
+  header.scrolled .brand-text span{color:var(--brand-red);}
 
   nav.mainnav{display:flex;align-items:center;gap:42px;}
   nav.mainnav a{
@@ -278,6 +278,7 @@
   }
   .lightbox-media{position:relative;overflow:hidden;background:var(--dark-2);height:100%;}
   .lightbox-media img{width:100%;height:100%;object-fit:cover;display:block;}
+  .lightbox-media img.is-contain{object-fit:contain;background:var(--dark-2);}
   .lightbox-media::after{
     content:"";position:absolute;inset:0;pointer-events:none;
     background:linear-gradient(90deg,rgba(12,10,8,0) 70%,rgba(12,10,8,0.35) 100%),
@@ -469,7 +470,7 @@
   .mobile-nav.is-open .mobile-nav-panel{transform:translateX(0);}
   .mobile-nav-top{display:flex;align-items:center;justify-content:space-between;padding:22px 22px 26px;}
   .mobile-nav-top .brand-text{color:var(--brand-red);}
-  .mobile-nav-top .brand-text span{display:block;color:var(--bronze);}
+  .mobile-nav-top .brand-text span{display:block;color:var(--brand-red);}
   .mobile-nav-close{
     display:flex;align-items:center;justify-content:center;width:44px;height:44px;
     background:none;border:none;cursor:pointer;position:relative;flex:none;
@@ -501,7 +502,7 @@
   <div class="wrap">
     <a href="#" class="brand">
       <img src="assets/logo_red.png" alt="MaxService">
-      <span class="brand-text">MaxService<span>FACILITY MANAGEMENT</span></span>
+      <span class="brand-text">MaxService<span>FACILITY MANAGEMENT PRIVATE LIMITED</span></span>
     </a>
     <nav class="mainnav">
       <a href="#about">About</a>
@@ -523,7 +524,7 @@
     <div class="mobile-nav-top">
       <a href="#" class="brand" data-mobile-nav-close>
         <img src="assets/logo_red.png" alt="MaxService" style="height:28px;">
-        <span class="brand-text">MaxService<span>FACILITY MANAGEMENT</span></span>
+        <span class="brand-text">MaxService<span>FACILITY MANAGEMENT PRIVATE LIMITED</span></span>
       </a>
       <button type="button" class="mobile-nav-close" data-mobile-nav-close aria-label="Close menu">
         <span></span><span></span>
@@ -549,7 +550,7 @@
     <div class="hero">
       <div class="wrap">
         <div class="hero-eyebrow">People &nbsp;/&nbsp; Spaces &nbsp;/&nbsp; Performance</div>
-        <h1>Facility Management<br>that <em>keeps you moving</em>.</h1>
+        <h1><span style="color:var(--brand-red);">Facility Management</span><br>that <em>keeps you moving</em>.</h1>
         <p>Integrated facility management solutions for safer, cleaner and more efficient spaces.</p>
         <div class="hero-ctas">
           <a href="#services" class="btn btn-solid">Explore Our Services →</a>
@@ -703,6 +704,20 @@
         <p>Sewage and water treatment plant operations engineered for compliance and sustainability.</p>
         <a href="#contact" class="svc-more"><span>Learn more</span><i class="svc-line"></i><span class="svc-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
       </div>
+      <div class="svc-card" data-service="svc-residential">
+        <span class="n">09</span>
+        <div class="svc-icon"><img src="assets/svc-residential.jpg" alt=""></div>
+        <h3>Apartments &amp; Residential Complexes</h3>
+        <p>Housekeeping, security, landscaping and STP/WTP upkeep for gated communities, run on one schedule.</p>
+        <a href="#contact" class="svc-more"><span>Learn more</span><i class="svc-line"></i><span class="svc-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      </div>
+      <div class="svc-card" data-service="svc-logistics">
+        <span class="n">10</span>
+        <div class="svc-icon"><img src="assets/svc-logistics.jpg" alt=""></div>
+        <h3>Logistics Parks</h3>
+        <p>MEP, security and housekeeping staffed in shifts to match dock schedules at warehousing and distribution hubs.</p>
+        <a href="#contact" class="svc-more"><span>Learn more</span><i class="svc-line"></i><span class="svc-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      </div>
     </div>
     <div class="pro-banner fade-up">
       <div class="l">
@@ -719,7 +734,7 @@
   <div class="wrap">
     <div class="top fade-up">
       <h2>Trusted across sectors.</h2>
-      <p>Nine industries, one accountable service partner &mdash; select a sector to see how we serve it.</p>
+      <p>Eleven industries, one accountable service partner &mdash; select a sector to see how we serve it.</p>
     </div>
     <div class="sector-tabs fade-up" role="tablist" aria-label="Sectors we serve">
       <button type="button" class="sector-tab is-active" data-sector="corporates" role="tab" aria-selected="true"><span>01</span>Corporates</button>
@@ -731,6 +746,8 @@
       <button type="button" class="sector-tab" data-sector="realestate" role="tab" aria-selected="false"><span>07</span>Commercial Real Estate</button>
       <button type="button" class="sector-tab" data-sector="itparks" role="tab" aria-selected="false"><span>08</span>IT Parks &amp; SEZ</button>
       <button type="button" class="sector-tab" data-sector="hospitality" role="tab" aria-selected="false"><span>09</span>Hospitality</button>
+      <button type="button" class="sector-tab" data-sector="residential" role="tab" aria-selected="false"><span>10</span>Apartments &amp; Residential Complexes</button>
+      <button type="button" class="sector-tab" data-sector="logistics" role="tab" aria-selected="false"><span>11</span>Logistics Parks</button>
     </div>
     <div class="sector-panel fade-up">
       <div class="sector-panel-item is-active" data-sector="corporates">
@@ -768,6 +785,14 @@
       <div class="sector-panel-item" data-sector="hospitality">
         <h3>Hospitality</h3>
         <p>Guest-facing spaces demand a different standard &mdash; front-of-house presentation, rapid-turnaround housekeeping, and the discretion hotels and serviced residences expect from every member of staff.</p>
+      </div>
+      <div class="sector-panel-item" data-sector="residential">
+        <h3>Apartments &amp; Residential Complexes</h3>
+        <p>Gated communities need a service partner as consistent as the residents who live there &mdash; housekeeping, security, landscaping and STP/WTP upkeep run on one schedule, with a single point of contact for the RWA or management committee.</p>
+      </div>
+      <div class="sector-panel-item" data-sector="logistics">
+        <h3>Logistics Parks</h3>
+        <p>Warehousing and distribution hubs run around the clock, so we do too &mdash; MEP upkeep, security and housekeeping staffed in shifts to match dock schedules, with safety-trained teams who understand a working floor.</p>
       </div>
     </div>
   </div>
@@ -822,7 +847,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span><span style="color:var(--brand-red);font-weight:600;">MaxService Facility Management Pvt Ltd</span> — © 2026. All rights reserved.</span>
+      <span><span style="color:var(--brand-red);font-weight:600;">MaxService Facility Management Private Limited</span> — © 2026. All rights reserved.</span>
       <span>Design refreshed with care.</span>
     </div>
   </div>
@@ -1176,7 +1201,8 @@
         eyebrow: 'Integrated Facility Management',
         title: 'One accountable team, every discipline.',
         desc: 'From daily operations to long-term asset planning, our facility managers coordinate every service under a single point of accountability — so nothing falls between departments, and nothing is ever your problem to chase.',
-        img: 'assets/svc-ifm.jpg'
+        img: 'assets/svc-ifm.jpg',
+        fit: 'contain'
       },
       'svc-soft': {
         eyebrow: 'Soft Services',
@@ -1219,6 +1245,20 @@
         title: 'Compliance, engineered in.',
         desc: 'Sewage and water treatment plant operations managed by qualified engineers, ensuring continuous regulatory compliance and sustainable resource use across every facility.'
         // no dedicated img — falls back to this card's own icon photo (already inlined once)
+      },
+      'svc-residential': {
+        eyebrow: 'Apartments & Residential Complexes',
+        title: 'Community living, consistently kept.',
+        desc: 'Housekeeping, security, landscaping and STP/WTP upkeep run on one schedule for gated communities, with a single point of contact for the RWA or management committee.',
+        img: 'assets/svc-residential.jpg',
+        fit: 'contain'
+      },
+      'svc-logistics': {
+        eyebrow: 'Logistics Parks',
+        title: 'Built for round-the-clock operations.',
+        desc: 'MEP upkeep, security and housekeeping staffed in shifts to match dock schedules, with safety-trained teams who understand a working warehouse floor.',
+        img: 'assets/svc-logistics.jpg',
+        fit: 'contain'
       }
     };
 
@@ -1283,6 +1323,7 @@
       const applyContent = ()=>{
         if(imgSrc) imgEl.src = imgSrc;
         imgEl.alt = data.title;
+        imgEl.classList.toggle('is-contain', data.fit === 'contain');
         if(indexEl) indexEl.textContent = currentIndex > -1 ? `${String(currentIndex+1).padStart(2,'0')} — ${String(currentOrder.length).padStart(2,'0')}` : '';
         eyebrowEl.textContent = data.eyebrow;
         titleEl.textContent = data.title;
