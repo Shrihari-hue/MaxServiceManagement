@@ -116,14 +116,14 @@
   /* ===== HERO (scroll-scrubbed image sequence) ===== */
   .hero-sequence{
     position:relative;
-    height:380vh; /* scroll distance over which the sequence plays out */
+    height:100vh;
   }
   .hero-sticky{
     position:sticky;top:0;
     height:100vh;height:100dvh;min-height:640px;
     display:flex;align-items:center;
     overflow:hidden;
-    background:var(--dark) url('frames/f000.jpg') center/cover no-repeat; /* fallback if JS/canvas can't run */
+    background:var(--dark) url('assets/hero-bg.jpg') center/cover no-repeat;
   }
   .hero-canvas{
     position:absolute;inset:0;width:100%;height:100%;
@@ -546,7 +546,6 @@
 
 <section class="hero-sequence" id="heroSequence">
   <div class="hero-sticky">
-    <canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>
     <div class="hero-gradient"></div>
     <div class="hero">
       <div class="wrap">
