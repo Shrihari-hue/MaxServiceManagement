@@ -314,13 +314,11 @@
     padding:11px 6px 11px 10px;text-align:left;cursor:pointer;
     color:rgba(255,255,255,0.55);transition:color .2s ease,border-color .2s ease;
   }
-  .lightbox-side-item .num{font-family:'Fraunces',serif;font-size:11px;color:rgba(255,255,255,0.4);padding-top:2px;min-width:16px;}
   .lightbox-side-item .icon{width:18px;height:18px;flex:none;margin-top:1px;color:inherit;}
   .lightbox-side-item .icon svg{width:100%;height:100%;display:block;}
   .lightbox-side-item .label{font-size:12px;line-height:1.35;letter-spacing:.03em;text-transform:uppercase;}
   .lightbox-side-item:hover{color:rgba(255,255,255,0.85);}
   .lightbox-side-item.is-active{color:var(--bronze-light);border-left-color:var(--bronze-light);}
-  .lightbox-side-item.is-active .num{color:var(--bronze-light);}
   .lightbox-content-wrap{
     position:relative;z-index:3;flex:1;min-width:0;height:100%;
     display:flex;align-items:center;overflow-y:auto;
@@ -345,17 +343,12 @@
     display:flex;align-items:center;justify-content:space-between;gap:24px;
     padding:16px 40px;
   }
-  .lightbox-pager-dots{display:flex;align-items:center;gap:18px;overflow-x:auto;}
+  .lightbox-pager-dots{display:flex;align-items:center;gap:11px;overflow-x:auto;}
   .lightbox-pager-dots button{
-    background:none;border:none;color:rgba(255,255,255,0.4);font-family:'Fraunces',serif;font-size:12px;
-    letter-spacing:.05em;cursor:pointer;padding:6px 0;position:relative;transition:color .2s ease;white-space:nowrap;
+    width:7px;height:7px;flex:none;border-radius:50%;padding:0;border:none;
+    background:rgba(255,255,255,0.35);cursor:pointer;transition:background .2s ease,transform .2s ease;
   }
-  .lightbox-pager-dots button::after{
-    content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--bronze-light);
-    transform:scaleX(0);transform-origin:left;transition:transform .3s ease;
-  }
-  .lightbox-pager-dots button.is-active{color:var(--white);}
-  .lightbox-pager-dots button.is-active::after{transform:scaleX(1);}
+  .lightbox-pager-dots button.is-active{background:var(--bronze-light);transform:scale(1.4);}
   .lightbox-pager-arrows{display:flex;align-items:center;gap:10px;flex:none;}
   .lightbox-nav{
     position:relative;top:auto;left:auto;right:auto;transform:none;z-index:4;width:44px;height:44px;border-radius:50%;
@@ -1391,7 +1384,6 @@
         const data = SERVICES[key];
         if(!data) return '';
         return `<button type="button" class="lightbox-side-item" data-key="${key}">
-          <span class="num">${String(i+1).padStart(2,'0')}</span>
           <span class="icon">${SVC_ICONS[key] || ''}</span>
           <span class="label">${data.eyebrow}</span>
         </button>`;
@@ -1401,9 +1393,10 @@
       });
     }
     if(pagerDotsEl){
-      pagerDotsEl.innerHTML = SVC_ORDER.map((key, i)=>
-        `<button type="button" data-key="${key}">${String(i+1).padStart(2,'0')}</button>`
-      ).join('');
+      pagerDotsEl.innerHTML = SVC_ORDER.map((key, i)=>{
+        const data = SERVICES[key];
+        return `<button type="button" data-key="${key}" aria-label="${data ? data.eyebrow : 'Service ' + (i+1)}"></button>`;
+      }).join('');
       pagerDotsEl.querySelectorAll('[data-key]').forEach(btn=>{
         btn.addEventListener('click', ()=> openLightbox(btn.getAttribute('data-key')));
       });
