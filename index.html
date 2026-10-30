@@ -337,6 +337,19 @@
     .lightbox-scroll-hint{animation:none;}
   }
   body.lightbox-open{overflow:hidden;}
+  /* Short-but-wide screens (laptops with browser chrome + taskbar eating height) —
+     shrink the text block so the button fits without needing to scroll at all. */
+  @media (min-width:861px) and (max-height:760px){
+    .lightbox-body{padding:24px clamp(32px,4vw,72px);gap:12px;}
+    .lightbox-body h3{font-size:clamp(26px,3vw,38px);line-height:1.05;}
+    .lightbox-body p{font-size:14.5px;line-height:1.55;}
+    .lightbox-index{font-size:12px;}
+  }
+  @media (min-width:861px) and (max-height:620px){
+    .lightbox-body{padding:18px clamp(28px,3.5vw,64px);gap:8px;}
+    .lightbox-body h3{font-size:clamp(22px,2.6vw,30px);}
+    .lightbox-body p{font-size:13.5px;line-height:1.45;}
+  }
   @media (max-width:860px){
     .lightbox-panel{grid-template-columns:1fr;grid-template-rows:42vh auto;overflow-y:auto;}
     .lightbox-media{height:42vh;}
