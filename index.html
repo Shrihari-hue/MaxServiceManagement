@@ -276,7 +276,7 @@
     background:var(--dark);color:var(--white);overflow:hidden;
     display:flex;
   }
-  .lightbox-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;display:block;}
+  .lightbox-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;display:block;}
   .lightbox-scrim{
     position:absolute;inset:0;z-index:1;pointer-events:none;
     background:
@@ -326,7 +326,12 @@
     display:flex;align-items:center;overflow-y:auto;
     padding:90px 64px 84px;
   }
-  .lightbox-content{max-width:600px;display:flex;flex-direction:column;gap:18px;}
+  .lightbox-content{
+    max-width:600px;display:flex;flex-direction:column;gap:16px;
+    background:rgba(8,7,5,0.46);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    padding:30px 34px;border-radius:3px;
+    box-shadow:0 30px 70px rgba(0,0,0,0.35);
+  }
   .lightbox-index{font-family:'Fraunces',serif;font-size:13.5px;color:rgba(255,255,255,0.5);letter-spacing:.08em;}
   .lightbox-content .eyebrow{color:var(--bronze-light);}
   .lightbox-content .eyebrow::before{background:var(--bronze-light);}
@@ -394,6 +399,7 @@
     .lightbox-topnav nav{display:none;}
   }
   @media (max-width:860px){
+    .lightbox-content{padding:20px 22px;}
     .lightbox-scrim{
       background:
         linear-gradient(180deg, rgba(10,9,7,0.55) 0%, rgba(10,9,7,0.15) 22%, rgba(10,9,7,0.35) 55%, rgba(10,9,7,0.92) 100%);
@@ -1337,7 +1343,8 @@
         eyebrow: 'Gardening & Landscaping',
         title: 'Outdoor spaces, thoughtfully kept.',
         desc: 'From ornamental gardens to everyday grounds maintenance, our landscaping teams design, plant and maintain outdoor spaces — lawns, hedges, seasonal flower beds and irrigation systems — with a regular upkeep schedule that elevates the overall experience of every property.',
-        img: 'assets/svc-garden.jpg'
+        img: 'assets/svc-garden.jpg',
+        pos: 'center 18%'
       },
       'svc-stp': {
         eyebrow: 'STP & WTP Services',
@@ -1457,6 +1464,7 @@
       const applyContent = ()=>{
         if(imgSrc) imgEl.src = imgSrc;
         imgEl.alt = data.title;
+        imgEl.style.objectPosition = data.pos || 'center';
         if(indexEl) indexEl.textContent = currentIndex > -1 ? `${String(currentIndex+1).padStart(2,'0')} — ${String(currentOrder.length).padStart(2,'0')}` : '';
         eyebrowEl.textContent = data.eyebrow;
         titleEl.textContent = data.title;
